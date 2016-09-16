@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   {
     selector: 'app',
     template: `
-      <h1>01 Hello angular</h1>
+      <div class="container-fluid">
+        <header></header>
+      </div>
     `
   }
 )

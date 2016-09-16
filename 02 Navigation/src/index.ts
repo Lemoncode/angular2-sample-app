@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { App } from './app';
+import { App } from './components/app';
+import { Header } from './components/common/header';
 
 @NgModule({
-  declarations: [App],
+  declarations: [
+    App,
+    Header
+  ],
   imports: [BrowserModule],
   bootstrap: [App]
 })
