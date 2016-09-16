@@ -22,6 +22,9 @@ module.exports = {
       "@angular/core",
       "@angular/platform-browser",
       "@angular/platform-browser-dynamic"
+    ],
+    vendorStyles: [
+      '../node_modules/bootstrap/dist/css/bootstrap.css'
     ]
   },
 
@@ -46,11 +49,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'ts'
       },
+      //Note: Doesn't exclude node_modules to load bootstrap
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style','css')
-      }
+      },
+      //Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
+      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }
     ]
   },
 
@@ -60,6 +68,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html'
+    }),
+    //Expose jquery used by bootstrap
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     })
   ]
 }
