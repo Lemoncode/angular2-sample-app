@@ -8,7 +8,7 @@ import { Patient } from '../../model/patient';
     <div class="row">
       <div class="col-xs-offset-11 col-xs-1">
         <div class="pull-right">
-          <span class="glyphicon glyphicon-plus-sign"></span>
+          <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/patient']"></span>
         </div>
       </div>
     </div>
@@ -30,13 +30,17 @@ import { Patient } from '../../model/patient';
             <td>{{p.name}}</td>
             <td>
               {{p.specialty}}
-              <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"></span>
+              <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
+                [routerLink]="['/patient']">
+              </span>
             </td>
             <td class="hidden-xs hidden-sm hidden-md">{{p.doctor}}</td>
             <td class="hidden-xs">{{p.date}}</td>
             <td class="hidden-xs">
               {{p.time}}
-              <span class="pull-right glyphicon glyphicon-pencil"></span>
+              <span class="pull-right glyphicon glyphicon-pencil"
+                [routerLink]="['/patient']">
+              </span>
             </td>
           </tr>
         </tbody>

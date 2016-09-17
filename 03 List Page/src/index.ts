@@ -13,6 +13,7 @@ import { LoginForm } from './components/login/loginForm';
 import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
 import { PatientList } from './components/patients/patientList';
+import { PatientPage } from './components/patient/patientPage';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PatientList } from './components/patients/patientList';
     LoginForm,
     PatientsPage,
     SearchPatient,
-    PatientList
+    PatientList,
+    PatientPage
   ],
   imports: [
     BrowserModule,
