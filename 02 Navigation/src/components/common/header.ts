@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">My App</a>
+              <a class="navbar-brand" [routerLink]="['/login']">My App</a>
             </div>
           </div>
         </nav>

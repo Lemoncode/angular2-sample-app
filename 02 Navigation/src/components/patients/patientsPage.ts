@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'login-page',
+  selector: 'patients-page',
   template: `
   <div>
-    <banner></banner>
-    <login-form></login-form>
+    <h1>Lista de pacientes</h1>
   </div>
   `
 })
-class LoginPage {
+class PatientsPage {
 
 }
 
 export {
-  LoginPage
+  PatientsPage
 }

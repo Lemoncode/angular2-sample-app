@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
     template: `
       <div class="container-fluid">
         <header></header>
-        <banner></banner>
-        <login></login>
+
+        <router-outlet></router-outlet>
       </div>
     `
   }
