@@ -26,15 +26,15 @@ import { Patient } from '../../model/patient';
         </thead>
         <tbody>
           <tr *ngFor="let p of patients">
-            <td class="col-xs-2 hidden-xs hidden-sm hidden-md">{{p.dni}}</td>
-            <td class="col-xs-2">{{p.name}}</td>
-            <td class="col-xs-2">
+            <td class="hidden-xs hidden-sm hidden-md">{{p.dni}}</td>
+            <td>{{p.name}}</td>
+            <td>
               {{p.specialty}}
               <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"></span>
             </td>
-            <td class="col-xs-2 hidden-xs hidden-sm hidden-md">{{p.doctor}}</td>
-            <td class="col-xs-2 hidden-xs">{{p.date}}</td>
-            <td class="col-xs-2 hidden-xs">
+            <td class="hidden-xs hidden-sm hidden-md">{{p.doctor}}</td>
+            <td class="hidden-xs">{{p.date}}</td>
+            <td class="hidden-xs">
               {{p.time}}
               <span class="pull-right glyphicon glyphicon-pencil"></span>
             </td>

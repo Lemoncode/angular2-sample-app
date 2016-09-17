@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   template: `
   <div class="container-fluid">
     <div class="row">
-      <search-patient class="col-sm-4 "></search-patient>
-      <patient-list class="col-sm-8 "></patient-list>
+      <search-patient class="col-md-4"></search-patient>
+      <patient-list class="col-md-8"></patient-list>
     </div>
   </div>
   `
