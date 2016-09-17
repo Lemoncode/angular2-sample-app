@@ -1,4 +1,5 @@
 export class Patient {
+  id: number;
   dni: string;
   name: string;
   specialty: string;

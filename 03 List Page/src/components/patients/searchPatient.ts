@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Promise } from 'core-js/es6';
+import { patientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'search-patient',
@@ -44,11 +46,9 @@ class SearchPatient {
   specialties: Array<string>;
 
   constructor() {
-    this.specialties = [
-      "Cirugía",
-      "Traumatología",
-      "Oftalmología"
-    ]
+    patientAPI.getAllSpecialtiesAsync().then((specialties: Array<string>) => {
+      this.specialties = specialties;
+    });
   }
 }
 
