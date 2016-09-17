@@ -11,6 +11,7 @@ import { LoginPage } from './components/login/loginPage';
 import { Banner } from './components/login/banner';
 import { LoginForm } from './components/login/loginForm';
 import { PatientsPage } from './components/patients/patientsPage';
+import { SearchPatient } from './components/patients/searchPatient';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PatientsPage } from './components/patients/patientsPage';
     LoginPage,
     Banner,
     LoginForm,
-    PatientsPage
+    PatientsPage,
+    SearchPatient
   ],
   imports: [
     BrowserModule,
