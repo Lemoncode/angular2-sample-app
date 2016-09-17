@@ -12,6 +12,7 @@ import { Banner } from './components/login/banner';
 import { LoginForm } from './components/login/loginForm';
 import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
+import { PatientList } from './components/patients/patientList';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SearchPatient } from './components/patients/searchPatient';
     Banner,
     LoginForm,
     PatientsPage,
-    SearchPatient
+    SearchPatient,
+    PatientList
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'search-patient',
   template: `
-  <div class="col-sm-4 well">
+  <div class="well">
     <div class="row">
       <div class="col-xs-12">
         <span class="col-xs-1 glyphicon glyphicon-search"></span>
