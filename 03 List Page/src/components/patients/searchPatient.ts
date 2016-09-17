@@ -7,9 +7,12 @@ import { Component } from '@angular/core';
     <div class="row">
       <div class="col-xs-12">
         <span class="col-xs-1 glyphicon glyphicon-search"></span>
-        <p class="col-xs-10">Buscar paciente</p>
+        <p class="col-xs-9">Buscar paciente</p>
+        <span class="collapse-toggle pull-right glyphicon glyphicon-collapse-down" data-toggle="collapse"
+          data-target="#search-form">
+        </span>
       </div>
-      <form>
+      <form id="search-form" class="collapse">
         <div class="col-xs-6 form-group">
           <label for="date">Fecha</label>
           <input type="date" class="form-control" id="date"/>

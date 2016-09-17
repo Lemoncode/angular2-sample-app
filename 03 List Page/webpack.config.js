@@ -25,7 +25,8 @@ module.exports = {
       "@angular/common",
       "@angular/compiler",
       "rxjs",
-      "@angular/router"
+      "@angular/router",
+      "bootstrap"
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css'
