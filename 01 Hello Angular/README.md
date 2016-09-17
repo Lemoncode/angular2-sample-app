@@ -78,7 +78,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 - **declarations**: defines which components we are going to use in this module. In this case App component.
 - **imports**: describes which *dependencies* this module has. In this case, we are going to create a browser app,
-so we have to use BrowserModule. There are other dependencies like ServerModule, etc.
+so we have to use BrowserModule. We are going to add here our custom modules that our app needs.
 - **bootstrap**: this property tells Angular to load, in this case, App component as the top-level component.
 
 The last line `platformBrowserDynamic().bootstrapModule(AppModule)` initialize the browser platform to runs AppModule application.

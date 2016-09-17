@@ -21,7 +21,11 @@ module.exports = {
       "zone.js",
       "@angular/core",
       "@angular/platform-browser",
-      "@angular/platform-browser-dynamic"
+      "@angular/platform-browser-dynamic",
+      "@angular/common",
+      "@angular/compiler",
+      "rxjs",
+      "@angular/router"
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css'
