@@ -14,7 +14,14 @@ const specialtiesMockData: Array<string> = [
   "Oftalmología"
 ];
 
+const doctorsMockData: Array<string> = [
+  "Karl J. Linville",
+  "Gladys C. Horton",
+  "Ruthie A. Nemeth"
+];
+
 export {
   patientsMockData,
-  specialtiesMockData
+  specialtiesMockData,
+  doctorsMockData
 }

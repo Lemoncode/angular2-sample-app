@@ -1,6 +1,6 @@
 import { Promise } from 'core-js/es6';
 import { Patient } from '../model/patient';
-import { patientsMockData, specialtiesMockData } from './mockData';
+import { patientsMockData, specialtiesMockData, doctorsMockData } from './mockData';
 
 class PatientAPI {
   getAllPatientsAsync(): Promise<Array<Patient>> {
@@ -17,6 +17,14 @@ class PatientAPI {
     });
 
     return specialtiesPromise;
+  };
+
+  getAllDoctorsAsync(): Promise<Array<string>> {
+    let doctorsPromise = new Promise((resolve, reject) => {
+      resolve(doctorsMockData);
+    });
+
+    return doctorsPromise;
   }
 }
 
