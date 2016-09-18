@@ -10,7 +10,7 @@ import { patientAPI } from '../../api/patientAPI';
     <div class="row">
       <div class="col-xs-offset-11 col-xs-1">
         <div class="pull-right">
-          <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/patient']"></span>
+          <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/patient', 0]"></span>
         </div>
       </div>
     </div>

@@ -10,3 +10,4 @@ Summary steps:
 
 ## Required dependencies
 - *03 List Page* dependencies
+- @angular/forms

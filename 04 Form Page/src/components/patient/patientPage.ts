@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { patientAPI } from '../../api/patientAPI';
 import { Patient } from '../../model/patient';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'patient-page',
@@ -14,13 +15,14 @@ import { Patient } from '../../model/patient';
     </div>
 
     <div class="row">
-      <form id="edit-patient-form">
+      <form [formGroup]="patientForm" id="edit-patient-form">
         <div class="col-xs-12 form-group">
           <label>Datos Paciente</label>
         </div>
         <div class="col-sm-6 form-group">
           <label for="dni">DNI</label>
-          <input type="text" class="form-control" id="dni"/>
+          <input type="text" class="form-control" id="dni"
+            [formControl]="patientForm.controls['dni']"/>
         </div>
         <div class="col-sm-6 form-group">
           <label for="name">Nombre</label>
@@ -59,14 +61,17 @@ class PatientPage {
   doctors: Array<string>;
   patientId: number;
   patient: Patient;
+  patientForm: FormGroup;
 
-  constructor(private route: ActivatedRoute) {
-    this.loadRelatedCollections();
-
+  constructor(private route: ActivatedRoute, formBuilder: FormBuilder) {
+    this.patient = new Patient();
     route.params.subscribe(params => {
       this.patientId = params['id'];
     });
     this.loadPatient();
+    this.loadRelatedCollections();
+
+    this.patientForm = formBuilder.group(this.patient);
   }
 
   private loadRelatedCollections() {
@@ -80,7 +85,7 @@ class PatientPage {
   }
 
   private loadPatient(){
-    if (this.patientId && this.patientId > 0) {
+    if (this.patientId > 0) {
       patientAPI.getPatientByIdAsync(this.patientId)
         .then((patient: Patient) => {
           this.patient = patient;

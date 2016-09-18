@@ -26,7 +26,8 @@ module.exports = {
       "@angular/compiler",
       "rxjs",
       "@angular/router",
-      "bootstrap"
+      "bootstrap",
+      "@angular/forms"
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css'
