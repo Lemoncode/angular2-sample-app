@@ -9,7 +9,7 @@ Summary steps:
 - Create App started component.
 
 ## Required dependencies
-
+- *00 Boilerplate* dependencies
 - core-js
 - reflect-metadata
 - zone.js

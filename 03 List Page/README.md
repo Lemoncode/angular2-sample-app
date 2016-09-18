@@ -13,7 +13,7 @@ Summary steps:
 - Create Patient route.
 
 ## Required dependencies
-- 02 Navigation dependencies
+- *02 Navigation* dependencies
 - Promise from **core-js/es6** (already installed), it's same package like [es6-promise](https://www.npmjs.com/package/es6-promise)
 
 # Model
@@ -105,7 +105,7 @@ export {
 This component is composed by two: search patient and patient list.
 
 ## Definition:
-### src/components/patients/searchPagient.ts
+### src/components/patients/searchPatient.ts
 
 We're going to create a dummy form to search patients. In class constructor,
 we retrieve specialties collection from server through patientAPI.
@@ -150,7 +150,7 @@ import { patientAPI } from '../../api/patientAPI';
         </div>
         <div class="col-xs-offset-10 col-xs-2 form-group">
           <div class="pull-right">
-            <button class="btn btn-primary">Buscar</button>
+            <button (click)="searchPatient($event)" class="btn btn-primary">Buscar</button>
           </div>
         </div>
       </form>
@@ -165,6 +165,10 @@ class SearchPatient {
     patientAPI.getAllSpecialtiesAsync().then((specialties: Array<string>) => {
       this.specialties = specialties;
     });
+  }
+
+  searchPatient(event){
+    event.preventDefault();
   }
 }
 
