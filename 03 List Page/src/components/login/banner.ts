@@ -4,7 +4,7 @@ const imageSrc = require('../../images/health.png');
 @Component({
   selector: 'banner',
   template: `
-  <div class="row hidden-xs">
+  <div class="banner row hidden-xs">
     <img src={{this.imageSrc}} class="img-responsive"/>
   </div>
   `

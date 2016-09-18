@@ -10,7 +10,7 @@ Summary steps:
 - Refactor App component.
 - Create Header component
 - Create Login component
-- Create Patients component
+- Create dummy Patients component
 - Configure router.
 
 ## Required dependencies
