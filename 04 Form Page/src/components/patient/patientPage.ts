@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { patientAPI } from '../../api/patientAPI';
+import { Patient } from '../../model/patient';
 
 @Component({
   selector: 'patient-page',
@@ -55,8 +57,19 @@ import { patientAPI } from '../../api/patientAPI';
 class PatientPage {
   specialties: Array<string>;
   doctors: Array<string>;
+  patientId: number;
+  patient: Patient;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    this.loadRelatedCollections();
+
+    route.params.subscribe(params => {
+      this.patientId = params['id'];
+    });
+    this.loadPatient();
+  }
+
+  private loadRelatedCollections() {
     Promise.all([
       patientAPI.getAllSpecialtiesAsync(),
       patientAPI.getAllDoctorsAsync()
@@ -64,6 +77,15 @@ class PatientPage {
       this.specialties = data[0];
       this.doctors = data[1];
     });
+  }
+
+  private loadPatient(){
+    if (this.patientId && this.patientId > 0) {
+      patientAPI.getPatientByIdAsync(this.patientId)
+        .then((patient: Patient) => {
+          this.patient = patient;
+        });
+    }
   }
 }
 

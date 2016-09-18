@@ -25,6 +25,18 @@ class PatientAPI {
     });
 
     return doctorsPromise;
+  };
+
+  getPatientByIdAsync(id: number): Promise<Patient> {
+    let patientPromise = new Promise((resolve, reject) => {
+      let patient = patientsMockData.filter((patient: Patient) => {
+        return patient.id === id;
+      });
+
+      resolve(patient);
+    });
+
+    return patientPromise;
   }
 }
 

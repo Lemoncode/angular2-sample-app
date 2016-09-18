@@ -41,7 +41,7 @@ import { patientAPI } from '../../api/patientAPI';
             <td class="hidden-xs">
               {{p.time}}
               <span class="pull-right glyphicon glyphicon-pencil"
-                [routerLink]="['/patient']">
+                [routerLink]="['/patient', p.id]">
               </span>
             </td>
           </tr>
