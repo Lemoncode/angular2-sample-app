@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Patient } from '../../model/patient';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { patientAPI } from '../../api/patientAPI';
+import { PatientFormValidator } from '../../validators/patientFormValidator';
 
 @Component({
   selector: 'patient-form',
@@ -18,10 +19,12 @@ import { patientAPI } from '../../api/patientAPI';
         <div class="col-xs-12 form-group">
           <label>Datos Paciente</label>
         </div>
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-6 form-group" [class.has-error]="patientForm.controls['dni'].dirty && patientForm.controls['dni'].invalid">
           <label for="dni">DNI</label>
           <input type="text" class="form-control" id="dni"
             [formControl]="patientForm.controls['dni']"/>
+          <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('required')" class="help-block">Campo requerido.</span>
+          <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('isDNI')" class="help-block">DNI inválido.</span>
         </div>
         <div class="col-sm-6 form-group">
           <label for="name">Nombre</label>
@@ -58,7 +61,11 @@ import { patientAPI } from '../../api/patientAPI';
 
         <div class="col-xs-offset-10 col-xs-2 form-group">
           <div class="pull-right">
-            <button type="button" (click)="savePatient($event, patientForm.value)" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-success"
+              (click)="(!patientForm.dirty && patientForm.invalid) || savePatient($event, patientForm.value)"
+              [class.disabled]="!patientForm.dirty && patientForm.invalid">
+              Guardar
+            </button>
           </div>
         </div>
       </form>
@@ -76,6 +83,9 @@ class PatientForm implements OnChanges {
   constructor(formBuilder: FormBuilder) {
     this.patient = new Patient();
     this.patientForm = formBuilder.group(this.patient);
+
+    let validator = new PatientFormValidator(this.patientForm);
+    validator.setValidators();
   }
 
   ngOnChanges(changes) {
