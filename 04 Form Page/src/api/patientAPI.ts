@@ -29,7 +29,7 @@ class PatientAPI {
 
   getPatientByIdAsync(id: number): Promise<Patient> {
     let patientPromise = new Promise((resolve, reject) => {
-      let patient = patientsMockData.filter((patient: Patient) => {
+      let patient = patientsMockData.find((patient: Patient) => {
         return patient.id === id;
       });
 
