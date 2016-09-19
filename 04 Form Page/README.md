@@ -6,7 +6,8 @@ In this demo will create a Patient form page to create new and edit patients.
 We will start from sample **03 List Page**.
 
 Summary steps:
--
+- Add new methods to Patient API.
+
 
 ## Required dependencies
 - *03 List Page* dependencies

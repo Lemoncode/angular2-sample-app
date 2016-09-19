@@ -24,6 +24,7 @@ import { patientAPI } from '../../api/patientAPI';
           <input type="time" class="form-control" id="time"/>
         </div>
         <div class="col-xs-12 form-group">
+          <label for="specialty">Especialidad</label>
           <select class="form-control">
             <option *ngFor="let s of specialties">{{s}}</option>
           </select>
