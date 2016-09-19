@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { patientAPI } from '../../api/patientAPI';
 import { Patient } from '../../model/patient';
 
@@ -9,7 +9,8 @@ import { Patient } from '../../model/patient';
   <div >
     <patient-form [patient]="patient"
       [specialties]="specialties"
-      [doctors]="doctors">
+      [doctors]="doctors"
+      [savePatient]="savePatient.bind(this)">
     </patient-form>
   </div>
   `
@@ -20,7 +21,7 @@ class PatientPage {
   patientId: number;
   patient: Patient;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.loadPatientId();
     this.loadPatient();
     this.loadRelatedCollections();
@@ -49,6 +50,12 @@ class PatientPage {
       this.specialties = data[0];
       this.doctors = data[1];
     });
+  }
+
+  savePatient(event: any, patient: Patient){
+    event.preventDefault();
+    patientAPI.savePatient(patient);
+    this.router.navigate(['/patients']);
   }
 }
 

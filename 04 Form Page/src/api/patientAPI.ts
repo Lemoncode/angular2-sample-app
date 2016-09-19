@@ -37,6 +37,24 @@ class PatientAPI {
     });
 
     return patientPromise;
+  };
+
+  savePatient(currentPatient: Patient): void {
+    let patient = patientsMockData.find((patient: Patient) => {
+      return patient.id === currentPatient.id;
+    });
+
+    if (patient) {
+        let patientIndex = patientsMockData.indexOf(patient);
+        patientsMockData.splice(patientIndex, 1, currentPatient);
+    } else {
+      let lastId = patientsMockData[patientsMockData.length -1].id;
+      currentPatient.id = lastId + 1;
+
+      patientsMockData.push(currentPatient);
+    }
+
+    patient = currentPatient;
   }
 }
 

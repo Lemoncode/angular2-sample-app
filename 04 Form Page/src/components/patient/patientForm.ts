@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { patientAPI } from '../../api/patientAPI';
+
 @Component({
   selector: 'patient-form',
   template: `
@@ -12,8 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     </div>
 
     <div class="row">
-      <form [formGroup]="patientForm" id="edit-patient-form"
-        (ngSubmit)="save(patientForm.value)">
+      <form [formGroup]="patientForm" id="edit-patient-form">
         <div class="col-xs-12 form-group">
           <label>Datos Paciente</label>
         </div>
@@ -57,7 +58,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
         <div class="col-xs-offset-10 col-xs-2 form-group">
           <div class="pull-right">
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" (click)="savePatient($event, patientForm.value)" class="btn btn-success">Guardar</button>
           </div>
         </div>
       </form>
@@ -69,6 +70,7 @@ class PatientForm implements OnChanges {
   @Input() specialties: Array<string>;
   @Input() doctors: Array<string>;
   @Input() patient: Patient;
+  @Input() savePatient: (patient: Patient) => void;
   patientForm: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
@@ -82,10 +84,6 @@ class PatientForm implements OnChanges {
     if(patient && patient.currentValue) {
       this.patientForm.setValue(patient.currentValue);
     }
-  }
-
-  save(value: any){
-    let a = value;
   }
 }
 
