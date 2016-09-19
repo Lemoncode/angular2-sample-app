@@ -4,7 +4,11 @@ import { Component } from '@angular/core';
   {
     selector: 'app',
     template: `
-      <h1>03 List page</h1>
+      <div class="container-fluid">
+        <header></header>
+
+        <router-outlet></router-outlet>
+      </div>
     `
   }
 )

@@ -14,7 +14,7 @@ Summary steps:
 - Configure router.
 
 ## Required dependencies
-- 01 Hello Angular dependencies
+- *01 Hello Angular* dependencies
 - @angular/router
 
 ## Styles dependencies
