@@ -181,7 +181,7 @@ export {
 
 We're going to create a table with patients collection retrieved by patient API.
 We can convert this table to responsive, hiding columns with bootstrap classes.
-We're using **routerLink** to navigate to patient page (Implemented in next sample).
+We're using **routerLink** to navigate to patient page.
 
 ```
 import { Component } from '@angular/core';

@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPage },
   { path: 'patients', component: PatientsPage },
-  { path: 'patient', component: PatientPage }
+  { path: 'patient/:id', component: PatientPage }
 ];
 
 export {

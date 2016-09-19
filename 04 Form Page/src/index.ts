@@ -4,6 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { routes } from './routes';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { App } from './components/app';
 import { Header } from './components/common/header';
@@ -14,6 +15,7 @@ import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
 import { PatientList } from './components/patients/patientList';
 import { PatientPage } from './components/patient/patientPage';
+import { PatientForm } from './components/patient/patientForm';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,14 @@ import { PatientPage } from './components/patient/patientPage';
     PatientsPage,
     SearchPatient,
     PatientList,
-    PatientPage
+    PatientPage,
+    PatientForm
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [App],
   providers: [
