@@ -54,8 +54,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
             <option *ngFor="let d of doctors" [value]="d">{{d}}</option>
           </select>
         </div>
-        
-        <button type="submit" class="btn btn-success">Guardar</button>
+
+        <div class="col-xs-offset-10 col-xs-2 form-group">
+          <div class="pull-right">
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -67,7 +71,7 @@ class PatientForm implements OnChanges {
   @Input() patient: Patient;
   patientForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {    
+  constructor(formBuilder: FormBuilder) {
     this.patient = new Patient();
     this.patientForm = formBuilder.group(this.patient);
   }
@@ -75,7 +79,7 @@ class PatientForm implements OnChanges {
   ngOnChanges(changes) {
     let patient: SimpleChange = changes['patient'];
 
-    if(patient.currentValue) {
+    if(patient && patient.currentValue) {
       this.patientForm.setValue(patient.currentValue);
     }
   }
