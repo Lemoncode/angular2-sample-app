@@ -10,7 +10,8 @@ import { Patient } from '../../model/patient';
     <patient-form [patient]="patient"
       [specialties]="specialties"
       [doctors]="doctors"
-      [savePatient]="savePatient.bind(this)">
+      [savePatient]="savePatient.bind(this)"
+      [navigateBack]="navigateBack.bind(this)">
     </patient-form>
   </div>
   `
@@ -53,8 +54,12 @@ class PatientPage {
   }
 
   savePatient(event: any, patient: Patient){
-    event.preventDefault();
     patientAPI.savePatient(patient);
+    this.navigateBack(event);
+  }
+
+  navigateBack(event: any) {
+    event.preventDefault();
     this.router.navigate(['/patients']);
   }
 }
