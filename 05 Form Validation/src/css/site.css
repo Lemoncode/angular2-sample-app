@@ -26,12 +26,21 @@
   display: block;
 }
 
+/*>= md resolution*/
 @media (min-width: 992px) {
   .collapse-toggle {
     display: none;
   }
 }
 
+/*md resolution*/
+@media (min-width: 992px) and (max-width: 1200px) {
+  .row-md {
+    clear: both;
+  }
+}
+
+/*<= md resolution*/
 @media (max-width: 992px) {
   .collapse {
     display: none;

@@ -14,11 +14,13 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
       </div>
     </div>
 
-    <div class="row">
-      <form [formGroup]="patientForm" id="edit-patient-form">
+    <form [formGroup]="patientForm" id="edit-patient-form">
+      <div class="row">
         <div class="col-xs-12 form-group">
           <label>Datos Paciente</label>
         </div>
+      </div>
+      <div class="row">
         <div class="col-sm-6 form-group" [class.has-error]="patientForm.controls['dni'].dirty && patientForm.controls['dni'].invalid">
           <label class="control-label" for="dni">DNI</label>
           <input type="text" class="form-control" id="dni"
@@ -33,9 +35,14 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
             [formControl]="patientForm.controls['name']"/>
           <span *ngIf="patientForm.controls['name'].dirty && patientForm.controls['name'].hasError('required')" class="help-block">Campo requerido.</span>
         </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12 form-group">
           <label>Datos Cita</label>
         </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['date'].dirty && patientForm.controls['date'].invalid">
           <label class="control-label" for="date">Fecha</label>
           <input type="date" class="form-control" id="date"
@@ -48,7 +55,8 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
             [formControl]="patientForm.controls['time']"/>
           <span *ngIf="patientForm.controls['time'].dirty && patientForm.controls['time'].hasError('required')" class="help-block">Campo requerido.</span>
         </div>
-        <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['specialty'].dirty && patientForm.controls['specialty'].invalid">
+
+        <div class="row-md col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['specialty'].dirty && patientForm.controls['specialty'].invalid">
           <label class="control-label" for="specialty">Especialidad</label>
           <select id="specialty" class="form-control"
             [formControl]="patientForm.controls['specialty']">
@@ -64,8 +72,18 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
             <option *ngFor="let d of doctors" [value]="d">{{d}}</option>
           </select>
         </div>
+      </div>
 
-        <div class="col-xs-offset-10 col-xs-2 form-group">
+      <div class="row">
+        <div class="col-xs-2 form-group">
+          <div>
+            <button type="button" class="btn btn-primary"
+              (click)="navigateBack($event)">
+              Volver
+            </button>
+          </div>
+        </div>
+        <div class="col-xs-offset-8 col-xs-2 form-group">
           <div class="pull-right">
             <button type="button" class="btn btn-success"
               (click)="(!patientForm.dirty || patientForm.invalid) || savePatient($event, patientForm.value)"
@@ -74,8 +92,8 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
             </button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
   `
 })
@@ -83,7 +101,8 @@ class PatientForm implements OnChanges {
   @Input() specialties: Array<string>;
   @Input() doctors: Array<string>;
   @Input() patient: Patient;
-  @Input() savePatient: (patient: Patient) => void;
+  @Input() savePatient: (event: any, patient: Patient) => void;
+  @Input() navigateBack: (event: any) => void;
   patientForm: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
