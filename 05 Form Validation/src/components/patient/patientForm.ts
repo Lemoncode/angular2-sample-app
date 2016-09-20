@@ -36,27 +36,31 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
         <div class="col-xs-12 form-group">
           <label>Datos Cita</label>
         </div>
-        <div class="col-md-6 col-lg-3 form-group">
+        <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['date'].dirty && patientForm.controls['date'].invalid">
           <label class="control-label" for="date">Fecha</label>
           <input type="date" class="form-control" id="date"
             [formControl]="patientForm.controls['date']"/>
+          <span *ngIf="patientForm.controls['date'].dirty && patientForm.controls['date'].hasError('required')" class="help-block">Campo requerido.</span>
         </div>
-        <div class="col-md-6 col-lg-3 form-group">
+        <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['time'].dirty && patientForm.controls['time'].invalid">
           <label class="control-label" for="time">Hora</label>
           <input type="time" class="form-control" id="time"
             [formControl]="patientForm.controls['time']"/>
+          <span *ngIf="patientForm.controls['time'].dirty && patientForm.controls['time'].hasError('required')" class="help-block">Campo requerido.</span>
         </div>
-        <div class="col-md-6 col-lg-3 form-group">
+        <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['specialty'].dirty && patientForm.controls['specialty'].invalid">
           <label class="control-label" for="specialty">Especialidad</label>
           <select id="specialty" class="form-control"
             [formControl]="patientForm.controls['specialty']">
+          <span *ngIf="patientForm.controls['specialty'].dirty && patientForm.controls['specialty'].hasError('required')" class="help-block">Campo requerido.</span>
             <option *ngFor="let s of specialties" [value]="s">{{s}}</option>
           </select>
         </div>
-        <div class="col-md-6 col-lg-3 form-group">
+        <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="patientForm.controls['doctor'].dirty && patientForm.controls['doctor'].invalid">
           <label class="control-label" for="doctor">Doctor</label>
           <select id="doctor" class="form-control"
             [formControl]="patientForm.controls['doctor']">
+          <span *ngIf="patientForm.controls['doctor'].dirty && patientForm.controls['doctor'].hasError('required')" class="help-block">Campo requerido.</span>
             <option *ngFor="let d of doctors" [value]="d">{{d}}</option>
           </select>
         </div>

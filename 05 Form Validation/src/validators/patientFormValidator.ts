@@ -9,6 +9,10 @@ class PatientFormValidator {
   setValidators() {
     this.setDNIValidators();
     this.setNameValidators();
+    this.setDateValidators();
+    this.setTimeValidators();
+    this.setSpecialtyValidators();
+    this.setDoctorValidators();
   }
 
   private setDNIValidators() {
@@ -25,6 +29,38 @@ class PatientFormValidator {
     let nameFormControl = this.patientForm.controls['name'];
 
     nameFormControl.setValidators([
+      Validators.required
+    ]);
+  }
+
+  private setDateValidators() {
+    let dateFormControl = this.patientForm.controls['date'];
+
+    dateFormControl.setValidators([
+      Validators.required
+    ]);
+  }
+
+  private setTimeValidators() {
+    let timeFormControl = this.patientForm.controls['time'];
+
+    timeFormControl.setValidators([
+      Validators.required
+    ]);
+  }
+
+  private setSpecialtyValidators() {
+    let specialtyFormControl = this.patientForm.controls['specialty'];
+
+    specialtyFormControl.setValidators([
+      Validators.required
+    ]);
+  }
+
+  private setDoctorValidators() {
+    let doctorFormControl = this.patientForm.controls['doctor'];
+
+    doctorFormControl.setValidators([
       Validators.required
     ]);
   }
