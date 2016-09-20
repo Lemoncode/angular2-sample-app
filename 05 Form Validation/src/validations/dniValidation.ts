@@ -1,17 +1,3 @@
-import { FormControl } from '@angular/forms';
-
-class DNIValidation {
-  isDNI(dniControl: FormControl): any {
-    return hasValidFormat(dniControl.value) && isValidDNI(dniControl.value) ?
-      null :
-      {
-        "isDNI": {
-          valid: false
-        }
-      }
-  }
-}
-//Problems with this
 let hasValidFormat = (value: string): boolean => {
   const dniRegex = /^[0-9]{8}[a-z, A-Z]$/;
 
@@ -19,18 +5,21 @@ let hasValidFormat = (value: string): boolean => {
 }
 
 let isValidDNI = (value: string): boolean => {
-  let validLetterMap = 'TRWAGMYFPDXBNJZSQVHLCKET';
   let dniNumber: number = parseInt(value);
-  let letterIndex = dniNumber % 23;
-  let validLetter = validLetterMap.charAt(letterIndex);
-
+  let validLetter: string = getValidLetterByDNINumber(dniNumber);
   let currentLetter = value.charAt(8).toUpperCase();
 
   return currentLetter === validLetter;
 };
 
-const dniValidation = new DNIValidation();
+let getValidLetterByDNINumber = (dniNumber: number) : string => {
+  let letterIndex = dniNumber % 23;
+  let validLetters = 'TRWAGMYFPDXBNJZSQVHLCKET';
+
+  return validLetters.charAt(letterIndex)
+};
 
 export {
-  dniValidation
+  hasValidFormat,
+  isValidDNI
 }

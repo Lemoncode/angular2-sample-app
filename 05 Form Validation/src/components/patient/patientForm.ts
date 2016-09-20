@@ -20,14 +20,15 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
           <label>Datos Paciente</label>
         </div>
         <div class="col-sm-6 form-group" [class.has-error]="patientForm.controls['dni'].dirty && patientForm.controls['dni'].invalid">
-          <label for="dni">DNI</label>
+          <label class="control-label" for="dni">DNI</label>
           <input type="text" class="form-control" id="dni"
             [formControl]="patientForm.controls['dni']"/>
           <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('required')" class="help-block">Campo requerido.</span>
-          <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('isDNI')" class="help-block">DNI inválido.</span>
+          <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('dni.isValid')" class="help-block">DNI inválido.</span>
+          <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('dni.hasValidFormat')" class="help-block">Formato incorrecto.</span>
         </div>
         <div class="col-sm-6 form-group">
-          <label for="name">Nombre</label>
+          <label class="control-label" for="name">Nombre</label>
           <input type="text" class="form-control" id="name"
             [formControl]="patientForm.controls['name']"/>
         </div>
@@ -35,24 +36,24 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
           <label>Datos Cita</label>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="date">Fecha</label>
+          <label class="control-label" for="date">Fecha</label>
           <input type="date" class="form-control" id="date"
             [formControl]="patientForm.controls['date']"/>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="time">Hora</label>
+          <label class="control-label" for="time">Hora</label>
           <input type="time" class="form-control" id="time"
             [formControl]="patientForm.controls['time']"/>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="specialty">Especialidad</label>
+          <label class="control-label" for="specialty">Especialidad</label>
           <select id="specialty" class="form-control"
             [formControl]="patientForm.controls['specialty']">
             <option *ngFor="let s of specialties" [value]="s">{{s}}</option>
           </select>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="doctor">Doctor</label>
+          <label class="control-label" for="doctor">Doctor</label>
           <select id="doctor" class="form-control"
             [formControl]="patientForm.controls['doctor']">
             <option *ngFor="let d of doctors" [value]="d">{{d}}</option>
@@ -62,8 +63,8 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
         <div class="col-xs-offset-10 col-xs-2 form-group">
           <div class="pull-right">
             <button type="button" class="btn btn-success"
-              (click)="(!patientForm.dirty && patientForm.invalid) || savePatient($event, patientForm.value)"
-              [class.disabled]="!patientForm.dirty && patientForm.invalid">
+              (click)="(!patientForm.dirty || patientForm.invalid) || savePatient($event, patientForm.value)"
+              [class.disabled]="!patientForm.dirty || patientForm.invalid">
               Guardar
             </button>
           </div>

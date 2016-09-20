@@ -1,5 +1,5 @@
 import { FormGroup, Validators } from '@angular/forms';
-import { dniValidation } from '../validations/dniValidation';
+import { dniValidator } from './dniValidator';
 
 class PatientFormValidator {
   constructor(private patientForm: FormGroup) {
@@ -15,7 +15,8 @@ class PatientFormValidator {
 
     dniControl.setValidators([
       Validators.required,
-      dniValidation.isDNI
+      dniValidator.hasValidFormat,
+      dniValidator.isValid
     ]);
   }
 }
