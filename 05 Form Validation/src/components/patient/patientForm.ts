@@ -27,10 +27,11 @@ import { PatientFormValidator } from '../../validators/patientFormValidator';
           <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('dni.isValid')" class="help-block">DNI inválido.</span>
           <span *ngIf="patientForm.controls['dni'].dirty && patientForm.controls['dni'].hasError('dni.hasValidFormat')" class="help-block">Formato incorrecto.</span>
         </div>
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-6 form-group" [class.has-error]="patientForm.controls['name'].dirty && patientForm.controls['name'].invalid">
           <label class="control-label" for="name">Nombre</label>
           <input type="text" class="form-control" id="name"
             [formControl]="patientForm.controls['name']"/>
+          <span *ngIf="patientForm.controls['name'].dirty && patientForm.controls['name'].hasError('required')" class="help-block">Campo requerido.</span>
         </div>
         <div class="col-xs-12 form-group">
           <label>Datos Cita</label>

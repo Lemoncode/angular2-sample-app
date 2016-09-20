@@ -8,15 +8,24 @@ class PatientFormValidator {
 
   setValidators() {
     this.setDNIValidators();
+    this.setNameValidators();
   }
 
   private setDNIValidators() {
-    let dniControl = this.patientForm.controls['dni'];
+    let dniFormControl = this.patientForm.controls['dni'];
 
-    dniControl.setValidators([
+    dniFormControl.setValidators([
       Validators.required,
       dniValidator.hasValidFormat,
       dniValidator.isValid
+    ]);
+  }
+
+  private setNameValidators() {
+    let nameFormControl = this.patientForm.controls['name'];
+
+    nameFormControl.setValidators([
+      Validators.required
     ]);
   }
 }
