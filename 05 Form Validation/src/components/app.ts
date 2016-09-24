@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PatientAPI} from '../api/patientAPI';
 
 @Component(
   {
@@ -9,7 +10,8 @@ import { Component } from '@angular/core';
 
         <router-outlet></router-outlet>
       </div>
-    `
+    `,
+    providers: [PatientAPI]
   }
 )
 class App {

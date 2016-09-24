@@ -2,7 +2,7 @@ import { Promise } from 'core-js/es6';
 import { Patient } from '../model/patient';
 import { patientsMockData, specialtiesMockData, doctorsMockData } from './mockData';
 
-class PatientAPI {
+export class PatientAPI {
   getAllPatientsAsync(): Promise<Array<Patient>> {
     let patientsPromise = new Promise((resolve, reject) => {
       resolve(patientsMockData);
@@ -59,7 +59,3 @@ class PatientAPI {
 }
 
 const patientAPI = new PatientAPI();
-
-export {
-  patientAPI
-}

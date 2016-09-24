@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { patientAPI } from '../../api/patientAPI';
+import { PatientAPI } from '../../api/patientAPI';
 import { Patient } from '../../model/patient';
 
 @Component({
@@ -22,7 +22,7 @@ class PatientPage {
   patientId: number;
   patient: Patient;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private patientAPI : PatientAPI) {
     this.loadPatientId();
     this.loadPatient();
     this.loadRelatedCollections();
@@ -36,7 +36,7 @@ class PatientPage {
 
   private loadPatient() {
     if (this.patientId > 0) {
-      patientAPI.getPatientByIdAsync(this.patientId)
+      this.patientAPI.getPatientByIdAsync(this.patientId)
         .then((patient: Patient) => {
           this.patient = patient;
         });
@@ -45,8 +45,8 @@ class PatientPage {
 
   private loadRelatedCollections() {
     Promise.all([
-      patientAPI.getAllSpecialtiesAsync(),
-      patientAPI.getAllDoctorsAsync()
+      this.patientAPI.getAllSpecialtiesAsync(),
+      this.patientAPI.getAllDoctorsAsync()
     ]).then((data) => {
       this.specialties = data[0];
       this.doctors = data[1];
@@ -54,7 +54,7 @@ class PatientPage {
   }
 
   savePatient(event: any, patient: Patient){
-    patientAPI.savePatient(patient);
+    this.patientAPI.savePatient(patient);
     this.navigateBack(event);
   }
 

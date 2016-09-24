@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { patientAPI } from '../../api/patientAPI';
 import { PatientFormValidator } from '../../validators/patientFormValidator';
 
 @Component({
