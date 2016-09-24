@@ -58,8 +58,7 @@ class PatientAPI {
   }
 }
 
-const patientAPI = new PatientAPI();
 
 export {
-  patientAPI
+  PatientAPI
 }

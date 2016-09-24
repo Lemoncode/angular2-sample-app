@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { Promise } from 'core-js/es6';
-import { patientAPI } from '../../api/patientAPI';
+import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'patient-list',
@@ -54,7 +54,7 @@ import { patientAPI } from '../../api/patientAPI';
 class PatientList {
   patients: Array<Patient>;
 
-  constructor() {
+  constructor(patientAPI : PatientAPI) {
     patientAPI.getAllPatientsAsync().then((patients: Array<Patient>) => {
       this.patients = patients;
     });

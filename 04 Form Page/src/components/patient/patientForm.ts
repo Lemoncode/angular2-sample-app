@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { patientAPI } from '../../api/patientAPI';
+import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'patient-form',
@@ -73,7 +73,7 @@ class PatientForm implements OnChanges {
   @Input() savePatient: (patient: Patient) => void;
   patientForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, patientAPI : PatientAPI) {
     this.patient = new Patient();
     this.patientForm = formBuilder.group(this.patient);
   }
