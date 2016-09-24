@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {PatientAPI} from '../api/patientAPI';
 @Component(
   {
     selector: 'app',
@@ -9,7 +9,8 @@ import { Component } from '@angular/core';
 
         <router-outlet></router-outlet>
       </div>
-    `
+    `,
+    providers: [PatientAPI]
   }
 )
 class App {
