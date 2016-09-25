@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { routes } from './routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppStore, store } from './store';
 
 import { App } from './components/app';
 import { Header } from './components/common/header';
@@ -38,7 +39,8 @@ import { PatientForm } from './components/patient/patientForm';
   ],
   bootstrap: [App],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: AppStore, useValue: store }
   ]
 })
 class AppModule {
