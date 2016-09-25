@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { Promise } from 'core-js/es6';
-import { PatientAPI } from '../../api/patientAPI';
+import { Store } from 'redux';
+import { AppStore } from '../../store';
+import { AppState } from '../../reducers/';
+import { loadPatients } from '../../actions/patientsActions';
 
 @Component({
   selector: 'patient-list',
@@ -54,10 +57,14 @@ import { PatientAPI } from '../../api/patientAPI';
 class PatientList {
   patients: Array<Patient>;
 
-  constructor(patientAPI : PatientAPI) {
-    patientAPI.getAllPatientsAsync().then((patients: Array<Patient>) => {
-      this.patients = patients;
-    });
+  constructor(@Inject(AppStore) private store: Store<AppState>) {
+    store.subscribe(() => this.readState());
+    store.dispatch(loadPatients());
+  }
+
+  readState() {
+    let state: AppState = this.store.getState();
+    this.patients = state.patients;
   }
 }
 
