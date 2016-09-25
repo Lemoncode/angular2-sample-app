@@ -24,3 +24,9 @@ const assignPatient: ActionCreator<AssignPatientAction> = (patient: Patient) => 
   type: ASSIGN_PATIENT,
   patient
 });
+
+export const savePatient = (patient: Patient) => {
+  return dispatcher => {
+    this.patientAPI.savePatient(patient);
+  }
+}

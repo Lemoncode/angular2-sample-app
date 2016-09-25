@@ -7,7 +7,7 @@ import { AppStore } from '../../store';
 import { AppState } from '../../reducers/';
 import { loadSpecialties } from '../../actions/specialtiesActions';
 import { loadDoctors } from '../../actions/doctorsActions';
-import { loadPatientById } from '../../actions/patientActions';
+import { loadPatientById, savePatient } from '../../actions/patientActions';
 
 @Component({
   selector: 'patient-form-container',
@@ -25,8 +25,8 @@ import { loadPatientById } from '../../actions/patientActions';
 class PatientFormContainer {
   specialties: Array<string>;
   doctors: Array<string>;
-  patientId: number;
   patient: Patient;
+  private patientId: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private patientAPI : PatientAPI,
   @Inject(AppStore) private store: Store<AppState>) {
@@ -44,8 +44,8 @@ class PatientFormContainer {
     });
   }
 
-  savePatient(event: any, patient: Patient){
-    this.patientAPI.savePatient(patient);
+  savePatient(event: any, patient: Patient) {
+    this.store.dispatch(savePatient(patient));
     this.navigateBack(event);
   }
 
