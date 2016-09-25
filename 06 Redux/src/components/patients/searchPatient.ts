@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Promise } from 'core-js/es6';
 import { PatientAPI } from '../../api/patientAPI';
 
@@ -44,17 +44,8 @@ import { PatientAPI } from '../../api/patientAPI';
   `
 })
 class SearchPatient {
-  specialties: Array<string>;
-
-  constructor(patientAPI : PatientAPI) {
-    patientAPI.getAllSpecialtiesAsync().then((specialties: Array<string>) => {
-      this.specialties = specialties;
-    });
-  }
-
-  searchPatient(event){
-    event.preventDefault();
-  }
+  @Input() specialties: Array<string>;
+  @Input() searchPatient: (event: any) => void;
 }
 
 export {
