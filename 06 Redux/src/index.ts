@@ -17,7 +17,7 @@ import { SearchPatientContainer } from './components/patients/searchPatient.cont
 import { SearchPatient } from './components/patients/searchPatient';
 import { PatientListContainer } from './components/patients/patientList.container';
 import { PatientList } from './components/patients/patientList';
-import { PatientPage } from './components/patient/patientPage';
+import { PatientFormContainer } from './components/patient/patientForm.container';
 import { PatientForm } from './components/patient/patientForm';
 
 @NgModule({
@@ -32,7 +32,7 @@ import { PatientForm } from './components/patient/patientForm';
     SearchPatient,
     PatientListContainer,
     PatientList,
-    PatientPage,
+    PatientFormContainer,
     PatientForm
   ],
   imports: [
