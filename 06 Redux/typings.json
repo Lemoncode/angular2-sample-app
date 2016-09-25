@@ -2,6 +2,7 @@
   "globalDependencies": {
     "core-js": "registry:dt/core-js#0.0.0+20160914114559",
     "redux": "registry:dt/redux#3.5.2+20160703092728",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921",
     "webpack-env": "registry:dt/webpack-env#1.12.2+20160316155526"
   }
 }
