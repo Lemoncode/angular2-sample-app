@@ -7,6 +7,7 @@ import { AppStore } from '../../store';
 import { AppState } from '../../reducers/';
 import { loadSpecialties } from '../../actions/specialtiesActions';
 import { loadDoctors } from '../../actions/doctorsActions';
+import { loadPatientById } from '../../actions/patientActions';
 
 @Component({
   selector: 'patient-form-container',
@@ -30,30 +31,16 @@ class PatientFormContainer {
   constructor(private route: ActivatedRoute, private router: Router, private patientAPI : PatientAPI,
   @Inject(AppStore) private store: Store<AppState>) {
     this.loadPatientId();
-    this.loadPatient();
+
     store.subscribe(() => this.updateState());
     store.dispatch(loadSpecialties());
     store.dispatch(loadDoctors());
+    store.dispatch(loadPatientById(this.patientId));
   }
 
   private loadPatientId() {
     this.route.params.subscribe(params => {
       this.patientId = parseInt(params['id']);
-    });
-  }
-
-  private loadPatient() {
-    if (this.patientId > 0) {
-      this.patientAPI.getPatientByIdAsync(this.patientId)
-        .then((patient: Patient) => {
-          this.patient = patient;
-        });
-    }
-  }
-
-  private loadRelatedCollections() {
-    this.patientAPI.getAllDoctorsAsync().then(doctors => {
-      this.doctors = doctors;
     });
   }
 
@@ -71,6 +58,7 @@ class PatientFormContainer {
     let state: AppState = this.store.getState();
     this.specialties = state.specialties;
     this.doctors = state.doctors;
+    this.patient = state.patient;
   }
 }
 
