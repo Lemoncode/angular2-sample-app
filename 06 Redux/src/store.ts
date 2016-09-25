@@ -1,15 +1,17 @@
-import { Store, StoreEnhancer, createStore, compose } from 'redux';
+import { Store, StoreEnhancer, createStore, compose, applyMiddleware  } from 'redux';
 import { AppState, reducers } from './reducers';
 import { OpaqueToken } from '@angular/core';
+import ReduxThunk from 'redux-thunk';
 
 let devTools: StoreEnhancer<AppState> =
   window['devToolsExtension'] ?
   window['devToolsExtension']() :
   f => f;
 
-export let store: Store<AppState> = createStore<AppState>(
+export let store: Store<AppState> = createStore<any>(
   reducers,
   compose(
+    applyMiddleware(ReduxThunk),
     devTools
   )
 );

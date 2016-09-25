@@ -1,14 +1,20 @@
 import { Action, ActionCreator } from 'redux';
+import { patientAPI } from '../api/patientAPI';
 
-export const LOAD_SPECIALTIES: string = "LOAD_SPECIALTIES";
-export interface LoadSpecialtiesAction extends Action {
+export const ASSIGN_SPECIALTIES: string = "ASSIGN_SPECIALTIES";
+export interface AssignSpecialtiesAction extends Action {
   specialties: Array<string>;
 }
 
-//TODO: Use async action to load specialties from API.
-export const loadSpecialties: ActionCreator<LoadSpecialtiesAction> = () => ({
-  type: LOAD_SPECIALTIES,
-  specialties: [
-    "Traumatología"
-  ]
+export const loadSpecialties = () => {
+  return dispatcher => {
+    patientAPI.getAllSpecialtiesAsync().then((specialties: Array<string>) => {
+      dispatcher(assignSpecialties(specialties));
+    });
+  }
+}
+
+const assignSpecialties: ActionCreator<AssignSpecialtiesAction> = (specialties: Array<string>) => ({
+  type: ASSIGN_SPECIALTIES,
+  specialties
 });

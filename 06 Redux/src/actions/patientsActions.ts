@@ -1,16 +1,21 @@
 import { Action, ActionCreator } from 'redux';
 import { Patient } from '../model/patient';
+import { patientAPI } from '../api/patientAPI';
 
-export const LOAD_PATIENTS: string = "LOAD_PATIENTS";
-export interface LoadPatientsAction extends Action {
+export const ASSIGN_PATIENTS: string = "ASSIGN_PATIENTS";
+export interface AssignPatientsAction extends Action {
   patients: Array<Patient>;
 }
 
-//TODO: Use async action to load patients from API.
-export const loadPatients: ActionCreator<LoadPatientsAction> = () => ({
-  type: LOAD_PATIENTS,
-  patients: [
-    { id: 1, dni: '50614475P', name: "Daniel Sanchez", specialty: "Traumatología",
-      doctor: "Karl J. Linville", date: "2019-09-19", time: "08:30" }
-  ]
+export const loadPatients = () => {
+  return dispatcher => {
+    patientAPI.getAllPatientsAsync().then((patients: Array<Patient>) => {
+      dispatcher(assignPatients(patients));
+    });
+  }
+};
+
+const assignPatients: ActionCreator<AssignPatientsAction> = (patients: Array<Patient>) => ({
+  type: ASSIGN_PATIENTS,
+  patients
 });

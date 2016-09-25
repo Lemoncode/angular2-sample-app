@@ -1,10 +1,10 @@
 import { Reducer } from 'redux';
-import { LOAD_SPECIALTIES, LoadSpecialtiesAction } from '../actions/specialtiesActions';
+import { ASSIGN_SPECIALTIES, AssignSpecialtiesAction } from '../actions/specialtiesActions';
 
 export const specialtiesReducer: Reducer<Array<string>> =
-(state: Array<string> = [], action: LoadSpecialtiesAction): Array<string> => {
+(state: Array<string> = [], action: AssignSpecialtiesAction): Array<string> => {
   switch(action.type) {
-    case LOAD_SPECIALTIES:
+    case ASSIGN_SPECIALTIES:
       return [...action.specialties];
 
     default:
