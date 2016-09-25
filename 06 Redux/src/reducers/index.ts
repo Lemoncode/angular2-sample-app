@@ -1,10 +1,11 @@
 import { Reducer, combineReducers } from 'redux';
-import { PatientsState } from './patientsReducer';
+import { Patient } from '../model/patient';
+import { patientsReducer } from './patientsReducer';
 
 export interface AppState {
-  patients: PatientsState;
+  patients: Array<Patient>;
 }
 
 export const reducers: Reducer<AppState> = combineReducers<AppState>({
-  patients: 
+  patients: patientsReducer
 });
