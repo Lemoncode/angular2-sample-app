@@ -14,6 +14,7 @@ import { Banner } from './components/login/banner';
 import { LoginForm } from './components/login/loginForm';
 import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
+import { PatientListContainer } from './components/patients/patientList.container';
 import { PatientList } from './components/patients/patientList';
 import { PatientPage } from './components/patient/patientPage';
 import { PatientForm } from './components/patient/patientForm';
@@ -27,6 +28,7 @@ import { PatientForm } from './components/patient/patientForm';
     LoginForm,
     PatientsPage,
     SearchPatient,
+    PatientListContainer,
     PatientList,
     PatientPage,
     PatientForm

@@ -6,7 +6,7 @@ import { Patient } from '../../model/patient';
 @Component({
   selector: 'patient-page',
   template: `
-  <div >
+  <div>
     <patient-form [patient]="patient"
       [specialties]="specialties"
       [doctors]="doctors"

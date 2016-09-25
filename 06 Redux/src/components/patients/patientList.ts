@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { Promise } from 'core-js/es6';
 import { Store } from 'redux';
@@ -55,17 +55,7 @@ import { loadPatients } from '../../actions/patientsActions';
   `
 })
 class PatientList {
-  patients: Array<Patient>;
-
-  constructor(@Inject(AppStore) private store: Store<AppState>) {
-    store.subscribe(() => this.readState());
-    store.dispatch(loadPatients());
-  }
-
-  readState() {
-    let state: AppState = this.store.getState();
-    this.patients = state.patients;
-  }
+  @Input() patients: Array<Patient>;
 }
 
 export {
