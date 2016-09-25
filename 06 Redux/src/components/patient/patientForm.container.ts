@@ -6,6 +6,7 @@ import { Store } from 'redux';
 import { AppStore } from '../../store';
 import { AppState } from '../../reducers/';
 import { loadSpecialties } from '../../actions/specialtiesActions';
+import { loadDoctors } from '../../actions/doctorsActions';
 
 @Component({
   selector: 'patient-form-container',
@@ -30,10 +31,9 @@ class PatientFormContainer {
   @Inject(AppStore) private store: Store<AppState>) {
     this.loadPatientId();
     this.loadPatient();
-    this.loadRelatedCollections();
-
     store.subscribe(() => this.updateState());
     store.dispatch(loadSpecialties());
+    store.dispatch(loadDoctors());
   }
 
   private loadPatientId() {
@@ -70,6 +70,7 @@ class PatientFormContainer {
   updateState() {
     let state: AppState = this.store.getState();
     this.specialties = state.specialties;
+    this.doctors = state.doctors;
   }
 }
 
