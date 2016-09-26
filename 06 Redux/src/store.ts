@@ -17,7 +17,7 @@ export let store: Store<AppState> = createStore<any>(
 );
 
 //Due to Store from Redux is an interface and we can't use interfaces as a
-//dependency injection key, we need to define something to be inyectable.
+//dependency injection key, we need to define something to be injectable.
 //Angular provides OpaqueToken that it's a better choice thant injecting
 //a string directly because it helps us avoid collisions.
 export const AppStore = new OpaqueToken('App.store');
