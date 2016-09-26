@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   <div class="container-fluid">
     <div class="row">
       <search-patient class="col-md-4"></search-patient>
-      <patient-list class="col-md-8"></patient-list>
+      <patients-list class="col-md-8"></patient-list>
     </div>
   </div>
   `
