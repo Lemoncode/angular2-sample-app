@@ -14,6 +14,7 @@ import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
 import { PatientList } from './components/patients/patientList';
 import { PatientPage } from './components/patient/patientPage';
+import {PatientAPI} from './api/patientAPI';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PatientPage } from './components/patient/patientPage';
   ],
   bootstrap: [App],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    PatientAPI
   ]
 })
 class AppModule {
