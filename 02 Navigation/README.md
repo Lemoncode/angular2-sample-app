@@ -15,44 +15,31 @@ Summary steps:
 
 ## Required dependencies
 - *01 Hello Angular* dependencies
+
+```
+npm install
+```
+
 - @angular/router
+
+```
+npm install @angular/router --save
+```
 
 ## Styles dependencies
 - bootstrap
 - jquery
 
+```
+npm install bootstrap jquery --save
+```
+
 ## Typings dependencies
-- corje-js
+- core-js (already installed in previous sample)
 - webpack-env
 
-# App component
-
-We are going to use Header component inside App component, so it will appear in all views from our application.
-
-## Definition:
-#### src/components/app.ts
-
 ```
-import { Component } from '@angular/core';
-
-@Component(
-  {
-    selector: 'app',
-    template: `
-      <div class="container-fluid">
-        <header></header>
-      </div>
-    `
-  }
-)
-class App {
-
-}
-
-export {
-  App
-}
-
+typings install dt~webpack-env --save --global
 ```
 
 # Header component
@@ -108,6 +95,39 @@ import { Header } from './components/common/header';
     Header,
     ...
 ```
+
+# App component
+
+We are going to create a Header component inside App component, so it will appear in all views from our application.
+
+## Definition:
+#### src/components/app.ts
+
+```
+import { Component } from '@angular/core';
+
+@Component(
+  {
+    selector: 'app',
+    template: `
+      <div class="container-fluid">
+        <header></header>
+      </div>
+    `
+  }
+)
+class App {
+
+}
+
+export {
+  App
+}
+
+```
+
+
+
 
 # Login component
 
