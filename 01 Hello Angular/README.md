@@ -8,6 +8,23 @@ Summary steps:
 - Install dependencies
 - Create App started component.
 
+Let's ensure we have installed the previous sample dependencies
+
+```
+npm install
+```
+
+It's a good idea as well to install globally webpack and
+typings:
+
+```
+npm install webpack -g
+```
+
+```
+npm install typings -g
+```
+
 ## Required dependencies
 - *00 Boilerplate* dependencies
 - core-js
@@ -23,9 +40,48 @@ Summary steps:
 - @angular/compiler
 - rxjs
 
+Let's install all them:
+
+```
+npm install @angular/common @angular/compiler
+@angular/core @angular/platform-browser @angular/platform-browser-dynamic
+core-js reflect-metadata
+rxjs zone.js --save
+```
+
+And let's install typings for core-js
+
+```
+typings install dt~core-js --save --global
+```
+
+This will install most of the angular 2 typings.
+
+And let's update wepback adding to the vendor zone the following
+entries
+
+```javascript
+vendor: [
+  "core-js",
+  "reflect-metadata",
+  "zone.js",
+  "@angular/core",
+  "@angular/platform-browser",
+  "@angular/platform-browser-dynamic",
+  "@angular/common",
+  "@angular/compiler",
+  "rxjs"
+]
+```
+We need to specify this because some of them are not directly referenced in the application but are needed (indirect references)
+
+
 # App component
 
-This is our started component, that is, it's like a "container" where we put other components.
+Let's create a subfolder called _components_.
+
+Under this subfolder we are going to create our main "container"
+component, let's create a file called _app.ts_.
 
 ## Definition
 #### src/components/app.ts
@@ -51,11 +107,11 @@ export {
 ```
 
 - **selector**: This property is used to define how to call this component from HTML.
-- **template**: We are defining our *template* string between [backticks](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) this is a new feature of ES6 that allow us to do multiline strings.
+- **template**: We are defining our *template* string between [backticks](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) this is a new feature of ES6 that allow us to do multiline strings (we could as well separate this into a separate HTML template).
 
 ## Configuration
 
-In *index.ts* file we are going to create our first NgModule necessary for booting our application.
+In *index.ts* file we are going to create our first NgModule this is needed for booting our application.
 
 #### src/index.ts
 ```
@@ -103,4 +159,10 @@ We use *app* selector, that we defined previously.
     </div>
   </body>
 </html>
+```
+
+Let's run the sample
+
+```
+npm start
 ```
