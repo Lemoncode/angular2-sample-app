@@ -42,6 +42,63 @@ npm install bootstrap jquery --save
 typings install dt~webpack-env --save --global
 ```
 
+## Webpack dependencies
+
+```
+npm install file-loader url-loader --save -dev
+```
+
+#webpack Config
+
+We need to add some loaders in order to work with css styles, fonts, and images
+
+### webpack.config.js
+
+Entry, vendors styles:
+
+```javascript
+vendorStyles: [
+  '../node_modules/bootstrap/dist/css/bootstrap.css'
+]
+```
+
+In the css loaders section we need to remove the _exclude node modules_
+
+```
+{
+  test: /\.css$/,
+  loader: ExtractTextPlugin.extract('style','css')
+},
+
+```
+
+Loaders section:
+
+```javascript
+//Loading glyphicons => https://github.com/gowravshekar/bootstrap-webpack
+{test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+{test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+{test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+{
+  test: /\.png$/,
+  loader: 'file?limit=0&name=[path][name].[hash].',
+  exclude: /node_modules/
+}
+
+```
+
+Global variable plugin (plugins section):
+
+```javascript
+//Expose jquery used by bootstrap
+new webpack.ProvidePlugin({
+  $: "jquery",
+  jQuery: "jquery"
+})
+```
+
+
 # Header component
 
 This is a navbar component.
@@ -127,14 +184,20 @@ export {
 ```
 
 
-
-
 # Login component
+
+Let's continue by creating a simple login component.
+
+We will place this under the subfolder _src/components/login_
 
 This component is composed by two components: banner and login form.
 
 ## Definition:
 ### src/components/login/banner.ts
+
+Banner form will display a background image, you can download this image from the follwoing url: https://github.com/Lemoncode/angular2-sample-app/blob/master/02%20Navigation/src/images/health.png
+
+Let's download it and place it under the subdoler _src/images/_
 
 We need to require image url (using [webpack-env](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/webpack/webpack-env.d.ts) typings) and inject it into template via class property.
 
@@ -206,7 +269,31 @@ export {
 }
 ```
 
+## Configuration
+
+We need to register this components in the main module.
+
+
+### src/index.ts
+```
+...
+import { Banner } from './components/login/banner';
+import { LoginForm } from './components/login/loginForm';
+...
+
+@NgModule({
+  declarations: [
+    ...  
+    Banner,
+    LoginForm,
+    ...
+```
+
+
 ## Using components
+
+Let's create a login page that will combine both banner and login form.
+
 ### src/components/login/loginPage.ts
 
 ```
@@ -231,21 +318,21 @@ export {
 ```
 
 ## Configuration
+
+We need to register this components in the main module.
+
+
 ### src/index.ts
 ```
 ...
 
 import { LoginPage } from './components/login/loginPage';
-import { Banner } from './components/login/banner';
-import { LoginForm } from './components/login/loginForm';
 ...
 
 @NgModule({
   declarations: [
     ...
     LoginPage,
-    Banner,
-    LoginForm,
     ...
 ```
 
@@ -254,7 +341,7 @@ import { LoginForm } from './components/login/loginForm';
 In next sample, this component will be a List of patients.
 
 ## Definition:
-### src/components/patients/pagientsPage.ts
+### src/components/patients/patientsPage.ts
 
 ```
 import { Component } from '@angular/core';
@@ -263,7 +350,7 @@ import { Component } from '@angular/core';
   selector: 'patients-page',
   template: `
   <div>
-    <h1>Lista de pacientes</h1>
+    <h1>Patients list</h1>
   </div>
   `
 })
@@ -293,7 +380,10 @@ import { PatientsPage } from './components/patients/patientsPage';
 
 # Router
 
-We are going to use [@angular/router](https://www.npmjs.com/package/@angular/router) like routing library.
+We are going to use [@angular/router](https://www.npmjs.com/package/@angular/router) as routing library.
+
+Le't start by creating a file under _src/routes.ts_ this file will hold the
+routes definitions and component mappings.
 
 ## Routes Definition
 ### src/routes.ts
@@ -324,7 +414,7 @@ export {
 
 We are using RouterModule with routes defined previously.
 
-In this case, we are using hash based paths strategy that the server understands as being the / path.
+In this case, we are using hash based paths strategy.
 
 ```
 ...
@@ -382,4 +472,10 @@ With [routerLink] tag, we can link defined routes.
 <button class="btn btn-success" [routerLink]="['/patients']">Login</button>
 `
 ...
+```
+
+Let's run the app:
+
+```
+npm start
 ```

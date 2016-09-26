@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
       <div class="row">
         <form class="form-horizontal">
           <div class="form-group">
-            <label for="user" class="col-sm-2 col-lg-offset-2 control-label">Usuario</label>
+            <label for="user" class="col-sm-2 col-lg-offset-2 control-label">User</label>
             <div class="col-sm-9 col-lg-4">
               <input type="text" class="form-control" id="user"/>
             </div>
