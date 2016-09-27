@@ -31,6 +31,32 @@ export class Patient {
   time: string;
 }
 ```
+### src/api/mockData.ts
+
+Class with mock data collections.
+
+```
+import { Patient } from '../model/patient';
+
+const patientsMockData: Array<Patient> = [
+  { id: 1, dni: "1234567A", name: "John Doe", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "08:30" },
+  { id: 2, dni: "5067254B", name: "Anna S. Batiste", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "09:00" },
+  { id: 3, dni: "1902045C", name: "Octavia L. Hilton", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "09:30" },
+  { id: 4, dni: "1880514D", name: "Tony M. Herrera", specialty: "Oftalmología", doctor: "Ruthie A. Nemeth", date: "19/09/2019", time: "10:00" },
+  { id: 5, dni: "6810774E", name: "Robert J. Macias", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "10:30" }
+];
+
+const specialtiesMockData: Array<string> = [
+  "Cirugía",
+  "Traumatología",
+  "Oftalmología"
+];
+
+export {
+  patientsMockData,
+  specialtiesMockData
+}
+```
 
 # API
 
@@ -66,39 +92,26 @@ class PatientAPI {
   }
 }
 
-const patientAPI = new PatientAPI();
 
 export {
+  PatientAPI
+}
+```
+
+## Configuration
+### src/index.ts
+
+We need to register patientAPI as a service
+
+```javascript
+import {patientAPI} from './api/patientAPI';
+...
+providers: [
+  { provide: LocationStrategy, useClass: HashLocationStrategy },
   patientAPI
-}
+]
 ```
 
-### src/api/mockData.ts
-
-Class with mock data collections.
-
-```
-import { Patient } from '../model/patient';
-
-const patientsMockData: Array<Patient> = [
-  { id: 1, dni: "1234567A", name: "John Doe", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "08:30" },
-  { id: 2, dni: "5067254B", name: "Anna S. Batiste", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "09:00" },
-  { id: 3, dni: "1902045C", name: "Octavia L. Hilton", specialty: "Traumatología", doctor: "Karl J. Linville", date: "19/09/2019", time: "09:30" },
-  { id: 4, dni: "1880514D", name: "Tony M. Herrera", specialty: "Oftalmología", doctor: "Ruthie A. Nemeth", date: "19/09/2019", time: "10:00" },
-  { id: 5, dni: "6810774E", name: "Robert J. Macias", specialty: "Cirugía", doctor: "Gladys C. Horton", date: "19/09/2019", time: "10:30" }
-];
-
-const specialtiesMockData: Array<string> = [
-  "Cirugía",
-  "Traumatología",
-  "Oftalmología"
-];
-
-export {
-  patientsMockData,
-  specialtiesMockData
-}
-```
 
 # Patients component
 
@@ -116,7 +129,7 @@ to render specialties collection inside a *select* HTML element.
 ```
 import { Component } from '@angular/core';
 import { Promise } from 'core-js/es6';
-import { patientAPI } from '../../api/patientAPI';
+import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'search-patient',
@@ -140,6 +153,7 @@ import { patientAPI } from '../../api/patientAPI';
           <input type="time" class="form-control" id="time"/>
         </div>
         <div class="col-xs-12 form-group">
+          <label for="specialty">Especialidad</label>
           <select class="form-control">
             <option *ngFor="let s of specialties">{{s}}</option>
           </select>
@@ -161,7 +175,7 @@ import { patientAPI } from '../../api/patientAPI';
 class SearchPatient {
   specialties: Array<string>;
 
-  constructor() {
+  constructor(patientAPI : PatientAPI) {
     patientAPI.getAllSpecialtiesAsync().then((specialties: Array<string>) => {
       this.specialties = specialties;
     });
@@ -177,7 +191,7 @@ export {
 }
 ```
 
-### src/components/patients/patientList.ts
+### src/components/patients/patientsList.ts
 
 We're going to create a table with patients collection retrieved by patient API.
 We can convert this table to responsive, hiding columns with bootstrap classes.
@@ -187,10 +201,10 @@ We're using **routerLink** to navigate to patient page.
 import { Component } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { Promise } from 'core-js/es6';
-import { patientAPI } from '../../api/patientAPI';
+import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
-  selector: 'patient-list',
+  selector: 'patients-list',
   template: `
   <div class="well">
     <div class="row">
@@ -237,10 +251,10 @@ import { patientAPI } from '../../api/patientAPI';
   </div>
   `
 })
-class PatientList {
+class PatientsList {
   patients: Array<Patient>;
 
-  constructor() {
+  constructor(patientAPI : PatientAPI) {
     patientAPI.getAllPatientsAsync().then((patients: Array<Patient>) => {
       this.patients = patients;
     });
@@ -248,7 +262,7 @@ class PatientList {
 }
 
 export {
-  PatientList
+  PatientsList
 }
 ```
 
@@ -264,7 +278,7 @@ import { Component } from '@angular/core';
   <div class="container-fluid">
     <div class="row">
       <search-patient class="col-md-4"></search-patient>
-      <patient-list class="col-md-8"></patient-list>
+      <patients-list class="col-md-8"></patients-list>
     </div>
   </div>
   `
@@ -286,7 +300,7 @@ export {
 
 import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
-import { PatientList } from './components/patients/patientList';
+import { PatientsList } from './components/patients/patientsList';
 ...
 
 @NgModule({
@@ -294,14 +308,19 @@ import { PatientList } from './components/patients/patientList';
     ...
     PatientsPage,
     SearchPatient,
-    PatientList,
+    PatientsList,
     ...
+```
+
+Let's test what we have created so far.
+
+```
+npm start
 ```
 
 # Patient component
 
-In next sample, this component will be a patient form to create new and edit
-existing one.
+By now we are going to create a dummy patient component, that will a allow in next sample to edit a single patient appointment.
 
 ## Definition:
 ### src/components/patient/patientPage.ts
@@ -359,4 +378,10 @@ const routes: Routes = [
 ...
   { path: 'patient', component: PatientPage }
 ];
+```
+
+Now we can start the application and check that we are able to navigate from the patient appointemnt view to the appointment view (the pencil icon had already a routerlink associated).
+
+```
+npm start
 ```

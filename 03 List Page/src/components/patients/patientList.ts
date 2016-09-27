@@ -4,7 +4,7 @@ import { Promise } from 'core-js/es6';
 import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
-  selector: 'patient-list',
+  selector: 'patients-list',
   template: `
   <div class="well">
     <div class="row">
