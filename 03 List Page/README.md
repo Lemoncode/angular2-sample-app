@@ -317,13 +317,10 @@ Let's test what we have created so far.
 ```
 npm start
 ```
-*** Continue review from here (d:\lab\ng2play)
-
 
 # Patient component
 
-In next sample, this component will be a patient form to create new and edit
-existing one.
+By now we are going to create a dummy patient component, that will a allow in next sample to edit a single patient appointment.
 
 ## Definition:
 ### src/components/patient/patientPage.ts
@@ -381,4 +378,10 @@ const routes: Routes = [
 ...
   { path: 'patient', component: PatientPage }
 ];
+```
+
+Now we can start the application and check that we are able to navigate from the patient appointemnt view to the appointment view (the pencil icon had already a routerlink associated).
+
+```
+npm start
 ```
