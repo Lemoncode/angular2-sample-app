@@ -10,6 +10,7 @@ Summary steps:
 - Install and configure *@angular/forms*.
 - Add route with params.
 - Create Patient Component.
+- Update Model.
 
 ## Required dependencies
 - *03 List Page* dependencies
@@ -316,5 +317,34 @@ class PatientForm implements OnChanges {
 
 export {
   PatientForm
+}
+```
+
+# Model
+### src/model/patient.ts
+
+We need to initialize properties to default values to avoid form errors like:
+
+>core.umd.js:3427 EXCEPTION: Uncaught (in promise): Error: Error in ./PatientForm class PatientForm - inline template:16:12 caused by: Cannot find control with unspecified name attribute
+
+```
+export class Patient {
+  id: number;
+  dni: string;
+  name: string;
+  specialty: string;
+  doctor: string;
+  date: string;
+  time: string;
+
+  constructor() {
+    this.id = 0;
+    this.dni = "";
+    this.name = "";
+    this.specialty = "";
+    this.doctor = "";
+    this.date = "";
+    this.time = "";
+  }
 }
 ```
