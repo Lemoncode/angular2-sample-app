@@ -9,13 +9,15 @@ import {LoginPage} from './loginPage';
 import {Banner} from './components/banner';
 import {LoginForm} from './components/loginForm';
 import {LoginField} from './components/loginField'
+import {LoginButton} from './components/loginButton';
 
 @NgModule({
   declarations: [
     LoginPage,
     Banner,
     LoginForm,
-    LoginField
+    LoginField,
+    LoginButton
   ],
   imports: [
     BrowserModule,

@@ -8,17 +8,14 @@ import { Component } from '@angular/core';
         <form class="form-horizontal">
           <login-field [caption]="'user'" [fieldId]="'user'"></login-field>
           <login-field [caption]="'password'" [fieldId]="'password'"></login-field>
-          <div class="form-group">
-            <div class="col-sm-1 col-sm-offset-2 col-lg-offset-4">
-              <button class="btn btn-success" [routerLink]="['/patients']">Login</button>
-            </div>
-          </div>
+          <login-button [navigationLink]="navigationLink"></login-button>
         </form>
       </div>
     </div>
   `
 })
 class LoginForm {
+  navigationLink = "/patients";
 }
 
 export {
