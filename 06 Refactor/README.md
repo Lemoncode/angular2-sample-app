@@ -490,3 +490,58 @@ export {
 ### src/components/login/components/loginButton.ts
 
 Let's do a similar thing with the login button
+
+```javascript
+import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
+
+
+@Component({
+  selector: 'login-button',
+
+  template: `
+      <div class="form-group">
+        <div class="col-sm-1 col-sm-offset-2 col-lg-offset-4">
+          <button class="btn btn-success" [routerLink]="[navigationLink]">Login</button>
+        </div>
+      </div>
+  `
+})
+class LoginButton {
+  @Input() navigationLink: string;
+}
+
+export {
+  LoginButton
+}
+```
+
+## Login module:
+### src/components/login/index.ts
+
+Let's register the component
+
+```
+import {LoginButton} from './components/loginButton';
+...
+declarations: [
+  ...
+  LoginButton
+],
+```
+
+## Login form:
+### src/components/login/components/loginForm.ts
+
+Let's refactor the login form template (html)
+
+template: `
+  <div class="container-fluid">
+    <div class="row">
+      <form class="form-horizontal">
+        <login-field [caption]="'user'" [fieldId]="'user'"></login-field>
+        <login-field [caption]="'password'" [fieldId]="'password'"></login-field>
+        <login-button [navigationLink]="navigationLink"></login-button>
+      </form>
+    </div>
+  </div>
+`
