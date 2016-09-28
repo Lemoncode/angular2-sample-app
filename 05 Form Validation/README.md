@@ -21,16 +21,16 @@ We're going to create two custom validations:
 - Valid DNI
 
 ## Definition:
-### src/validations/daniValidation.ts
+### src/validations/dniValidation.ts
 
 ```
-let hasValidFormat = (value: string): boolean => {
+const hasValidFormat = (value: string): boolean => {
   const dniRegex = /^[0-9]{8}[a-z, A-Z]$/;
 
   return dniRegex.test(value);
 }
 
-let isValidDNI = (value: string): boolean => {
+const isValidDNI = (value: string): boolean => {
   let dniNumber: number = parseInt(value);
   let validLetter: string = getValidLetterByDNINumber(dniNumber);
   let currentLetter = value.charAt(8).toUpperCase();
@@ -91,6 +91,8 @@ export {
   dniValidator
 }
 ```
+
+
 
 # Patient Form Validator
 

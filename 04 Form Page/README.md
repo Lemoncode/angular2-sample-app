@@ -1,7 +1,7 @@
 # 04 Form Page
 Let's get started working with forms.
 
-In this demo will create a Patient form page to create new and edit patients.
+In this demo will create a Patient form page to create and update patient appointments.
 
 We will start from sample **03 List Page**.
 
@@ -10,6 +10,7 @@ Summary steps:
 - Install and configure *@angular/forms*.
 - Add route with params.
 - Create Patient Component.
+- Update Model.
 
 ## Required dependencies
 - *03 List Page* dependencies
@@ -143,82 +144,37 @@ const routes: Routes = [
 ...
 ```
 
+
+# Model
+### src/model/patient.ts
+
+We need to initialize properties to default values to avoid form errors like:
+
+>core.umd.js:3427 EXCEPTION: Uncaught (in promise): Error: Error in ./PatientForm class PatientForm - inline template:16:12 caused by: Cannot find control with unspecified name attribute
+
+```
+export class Patient {
+  id: number;
+  dni: string;
+  name: string;
+  specialty: string;
+  doctor: string;
+  date: string;
+  time: string;
+
+  constructor() {
+    this.id = 0;
+    this.dni = "";
+    this.name = "";
+    this.specialty = "";
+    this.doctor = "";
+    this.date = "";
+    this.time = "";
+  }
+}
+```
+
 # Patient Component
-
-This component is a form where we're going to retrieve patient data from server
-if it's an existing patient or create new if not, and save changes.
-
-## Definition:
-### src/components/patient/patientPage.ts
-
-We're retrieving data from server and inject it child component (patientForm).
-
-```
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { patientAPI } from '../../api/patientAPI';
-import { Patient } from '../../model/patient';
-
-@Component({
-  selector: 'patient-page',
-  template: `
-  <div >
-    <patient-form [patient]="patient"
-      [specialties]="specialties"
-      [doctors]="doctors"
-      [savePatient]="savePatient.bind(this)">
-    </patient-form>
-  </div>
-  `
-})
-class PatientPage {
-  specialties: Array<string>;
-  doctors: Array<string>;
-  patientId: number;
-  patient: Patient;
-
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.loadPatientId();
-    this.loadPatient();
-    this.loadRelatedCollections();
-  }
-
-  private loadPatientId() {
-    this.route.params.subscribe(params => {
-      this.patientId = parseInt(params['id']);
-    });
-  }
-
-  private loadPatient() {
-    if (this.patientId > 0) {
-      patientAPI.getPatientByIdAsync(this.patientId)
-        .then((patient: Patient) => {
-          this.patient = patient;
-        });
-    }
-  }
-
-  private loadRelatedCollections() {
-    Promise.all([
-      patientAPI.getAllSpecialtiesAsync(),
-      patientAPI.getAllDoctorsAsync()
-    ]).then((data) => {
-      this.specialties = data[0];
-      this.doctors = data[1];
-    });
-  }
-
-  savePatient(event: any, patient: Patient){
-    event.preventDefault();
-    patientAPI.savePatient(patient);
-    this.router.navigate(['/patients']);
-  }
-}
-
-export {
-  PatientPage
-}
-```
 
 ### src/components/patient/patientForm.ts
 
@@ -316,5 +272,81 @@ class PatientForm implements OnChanges {
 
 export {
   PatientForm
+}
+```
+
+This component is a form where we're going to retrieve patient data from server
+if it's an existing patient or create new if not, and save changes.
+
+
+## Definition:
+### src/components/patient/patientPage.ts
+
+We're retrieving data from server and inject it child component (patientForm).
+
+```
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PatientAPI } from '../../api/patientAPI';
+import { Patient } from '../../model/patient';
+
+@Component({
+  selector: 'patient-page',
+  template: `
+  <div >
+    <patient-form [patient]="patient"
+      [specialties]="specialties"
+      [doctors]="doctors"
+      [savePatient]="savePatient.bind(this)">
+    </patient-form>
+  </div>
+  `
+})
+class PatientPage {
+  specialties: Array<string>;
+  doctors: Array<string>;
+  patientId: number;
+  patient: Patient;
+
+  constructor(private route: ActivatedRoute, private router: Router, private patientAPI : PatientAPI) {
+    this.loadPatientId();
+    this.loadPatient();
+    this.loadRelatedCollections();
+  }
+
+  private loadPatientId() {
+    this.route.params.subscribe(params => {
+      this.patientId = parseInt(params['id']);
+    });
+  }
+
+  private loadPatient() {
+    if (this.patientId > 0) {
+      this.patientAPI.getPatientByIdAsync(this.patientId)
+        .then((patient: Patient) => {
+          this.patient = patient;
+        });
+    }
+  }
+
+  private loadRelatedCollections() {
+    Promise.all([
+      this.patientAPI.getAllSpecialtiesAsync(),
+      this.patientAPI.getAllDoctorsAsync()
+    ]).then((data) => {
+      this.specialties = data[0];
+      this.doctors = data[1];
+    });
+  }
+
+  savePatient(event: any, patient: Patient){
+    event.preventDefault();
+    this.patientAPI.savePatient(patient);
+    this.router.navigate(['/patients']);
+  }
+}
+
+export {
+  PatientPage
 }
 ```
