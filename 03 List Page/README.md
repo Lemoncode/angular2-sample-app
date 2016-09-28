@@ -380,6 +380,17 @@ const routes: Routes = [
 ];
 ```
 
+If we wanto to have bootstrap fully operational, we need to add _bootstrap_ and _jquery_ into vendor references in _webpack.config.js_ (the search patient collapse chevron icons needs this).
+
+```
+vendor:[
+...
+"jquery",
+"bootstrap"
+...
+]
+```
+
 Now we can start the application and check that we are able to navigate from the patient appointemnt view to the appointment view (the pencil icon had already a routerlink associated).
 
 ```
