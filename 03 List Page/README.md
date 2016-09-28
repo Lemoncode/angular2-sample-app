@@ -104,11 +104,11 @@ export {
 We need to register patientAPI as a service
 
 ```javascript
-import {patientAPI} from './api/patientAPI';
+import {PatientAPI} from './api/patientAPI';
 ...
 providers: [
   { provide: LocationStrategy, useClass: HashLocationStrategy },
-  patientAPI
+  PatientAPI
 ]
 ```
 
