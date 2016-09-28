@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { routes } from './routes';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppStore, store } from './store';
 
 import { App } from './components/app';
@@ -38,8 +38,7 @@ import { PatientForm } from './components/patient/patientForm';
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
   ],
   bootstrap: [App],
   providers: [

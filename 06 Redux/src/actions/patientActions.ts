@@ -27,6 +27,20 @@ const assignPatient: ActionCreator<AssignPatientAction> = (patient: Patient) => 
 
 export const savePatient = (patient: Patient) => {
   return dispatcher => {
-    this.patientAPI.savePatient(patient);
+    patientAPI.savePatient(patient);
+  }
+}
+
+export const PATIENT_UI_INPUT: string = "PATIENT_UI_INPUT";
+export interface PatientUIInputAction extends Action {
+  fieldName: string;
+  value: any;
+}
+
+export const updatePatientUI: ActionCreator<PatientUIInputAction> = (fieldName: string, value: any) => {
+  return {
+    type: PATIENT_UI_INPUT,
+    fieldName,
+    value
   }
 }

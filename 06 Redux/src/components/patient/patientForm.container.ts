@@ -7,7 +7,7 @@ import { AppStore } from '../../store';
 import { AppState } from '../../reducers/';
 import { loadSpecialties } from '../../actions/specialtiesActions';
 import { loadDoctors } from '../../actions/doctorsActions';
-import { loadPatientById, savePatient } from '../../actions/patientActions';
+import { loadPatientById, savePatient, updatePatientUI } from '../../actions/patientActions';
 
 @Component({
   selector: 'patient-form-container',
@@ -16,8 +16,9 @@ import { loadPatientById, savePatient } from '../../actions/patientActions';
     <patient-form [patient]="patient"
       [specialties]="specialties"
       [doctors]="doctors"
-      [savePatient]="savePatient.bind(this)"
-      [navigateBack]="navigateBack.bind(this)">
+      [onSave]="savePatient.bind(this)"
+      [navigateBack]="navigateBack.bind(this)"
+      [onChange]="updatePatientFormUI.bind(this)">
     </patient-form>
   </div>
   `
@@ -59,6 +60,13 @@ class PatientFormContainer {
     this.specialties = state.specialties;
     this.doctors = state.doctors;
     this.patient = state.patient;
+  }
+
+  updatePatientFormUI(event: any) {
+    var field = event.target.id;
+    var value = event.target.value;
+
+    this.store.dispatch(updatePatientUI(field, value));
   }
 }
 
