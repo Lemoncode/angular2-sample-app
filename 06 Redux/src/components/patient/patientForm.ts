@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Patient } from '../../model/patient';
+import { PatientFormState } from '../../states/patientFormState';
 
 @Component({
   selector: 'patient-form',
@@ -21,7 +22,7 @@ import { Patient } from '../../model/patient';
         <div class="col-sm-6 form-group" [class.has-error]="false">
           <label class="control-label" for="dni">DNI</label>
           <input type="text" class="form-control" id="dni"
-            value={{patient.dni}}
+            value={{patientForm.patient.dni}}
             (input)="onChange($event)" />
         </div>
       </div>
@@ -51,13 +52,14 @@ import { Patient } from '../../model/patient';
 class PatientForm implements OnInit {
   @Input() specialties: Array<string>;
   @Input() doctors: Array<string>;
-  @Input() patient: Patient;
+  @Input() patientForm: PatientFormState;
   @Input() onSave: (event: any, patient: Patient) => void;
   @Input() navigateBack: (event: any) => void;
   @Input() onChange: (event: any) => void;
+  @Input() onInitializeForm: () => void;
 
   ngOnInit() {
-    this.patient = new Patient();
+    this.onInitializeForm();
   }
 }
 

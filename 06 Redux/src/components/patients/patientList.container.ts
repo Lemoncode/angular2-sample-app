@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { Store } from 'redux';
 import { AppStore } from '../../store';
-import { AppState } from '../../reducers/';
+import { AppState } from '../../states/appState';
 import { loadPatients } from '../../actions/patients/loadPatientsAction';
 
 @Component({

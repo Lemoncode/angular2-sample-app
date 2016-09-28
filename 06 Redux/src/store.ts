@@ -1,5 +1,6 @@
 import { Store, StoreEnhancer, createStore, compose, applyMiddleware  } from 'redux';
-import { AppState, reducers } from './reducers';
+import { reducers } from './reducers';
+import { AppState } from './states/appState';
 import { OpaqueToken } from '@angular/core';
 import ReduxThunk from 'redux-thunk';
 

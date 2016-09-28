@@ -3,24 +3,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from '../../model/patient';
 import { Store } from 'redux';
 import { AppStore } from '../../store';
-import { AppState } from '../../reducers/';
+import { AppState } from '../../states/appState';
+import { PatientFormState } from '../../states/patientFormState';
 import { loadSpecialties } from '../../actions/specialties/loadSpecialtiesAction';
 import { loadDoctors } from '../../actions/doctors/loadDoctorsAction';
 import { loadPatientById } from '../../actions/patient/loadPatientAction';
 import { savePatient } from '../../actions/patient/savePatientAction';
 import { updatePatientUI } from '../../actions/patient/updatePatientUIAction';
+import { initializePatientForm } from '../../actions/patient/initializePatientFormAction';
 
 @Component({
   selector: 'patient-form-container',
   template: `
   <div>
     <patient-form
-      [patient]="patient"
+      [patientForm]="patientForm"
       [specialties]="specialties"
       [doctors]="doctors"
       [onSave]="savePatient.bind(this)"
       [navigateBack]="navigateBack.bind(this)"
-      [onChange]="updatePatientFormUI.bind(this)">
+      [onChange]="updatePatientFormUI.bind(this)"
+      [onInitializeForm]="initializePatientForm.bind(this)">
     </patient-form>
   </div>
   `
@@ -28,7 +31,7 @@ import { updatePatientUI } from '../../actions/patient/updatePatientUIAction';
 class PatientFormContainer {
   specialties: Array<string>;
   doctors: Array<string>;
-  patient: Patient;
+  patientForm: PatientFormState;
   private patientId: number;
 
   constructor(private route: ActivatedRoute, private router: Router,
@@ -61,7 +64,11 @@ class PatientFormContainer {
     let state: AppState = this.store.getState();
     this.specialties = state.specialties;
     this.doctors = state.doctors;
-    this.patient = state.patient;
+    this.patientForm = state.patientForm;
+  }
+
+  initializePatientForm() {
+    this.store.dispatch(initializePatientForm);
   }
 
   updatePatientFormUI(event: any) {

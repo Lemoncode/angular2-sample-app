@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Store } from 'redux';
 import { AppStore } from '../../store';
-import { AppState } from '../../reducers/';
+import { AppState } from '../../states/appState';
 import { loadSpecialties } from '../../actions/specialties/loadSpecialtiesAction';
 
 @Component({
