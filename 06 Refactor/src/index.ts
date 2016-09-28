@@ -8,9 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { App } from './components/app';
 import { Header } from './components/common/header';
-import { LoginPage } from './components/login/loginPage';
-import { Banner } from './components/login/banner';
-import { LoginForm } from './components/login/loginForm';
+
+import { LoginModule} from './components/login/';
+
 import { PatientsPage } from './components/patients/patientsPage';
 import { SearchPatient } from './components/patients/searchPatient';
 import { PatientList } from './components/patients/patientList';
@@ -21,9 +21,6 @@ import { PatientForm } from './components/patient/patientForm';
   declarations: [
     App,
     Header,
-    LoginPage,
-    Banner,
-    LoginForm,
     PatientsPage,
     SearchPatient,
     PatientList,
@@ -34,7 +31,8 @@ import { PatientForm } from './components/patient/patientForm';
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoginModule
   ],
   bootstrap: [App],
   providers: [
