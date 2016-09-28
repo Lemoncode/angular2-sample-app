@@ -8,7 +8,7 @@ We will start from sample **05 Form Validation**.
 
 Summary steps:
 - Encapsulate pages + subcomponent into a NgModules + index.js.
-- Make shorter the component HTML (break into subcomponents), sample: loginform.
+- Make shorter HTML templates (break into subcomponents), sample: loginform.
 - Extract the HTML template into a separate file.
 
 - Use of ng-message like for error messaging.
@@ -355,3 +355,138 @@ class AppModule {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
 ```
+
+# Simplify HTML components
+
+Lets start by checking how can we improve the login module, bad smells that we can find:
+
+    - Its not clear which components are ham (loginPage) and which ones are just private
+    or minor subcomponents, it would be a good idea to create a subfolder on the login
+    area called 'components' and keep at root level just the page and the index.
+
+    - LoginForm HTML template is too big we should abstract detailed HTML into simpler
+    components that could let us understand the template content just by reading
+    it in one go.
+
+
+## Folder refactoring
+
+We are going to create a subfolder under _src/components/login_ called _components_
+and move there _banner.ts_, _loginForm.ts
+
+## Banner:
+### src/components/login/components/banner.ts
+
+
+Banner component is consuming an image via require we have to update the path
+of that picture
+
+```javascript
+const imageSrc = require('../../../images/health.png');
+```
+
+## Login Module:
+### src/components/login/index.ts
+
+
+
+Once we have done this, we have to fix the references in the login module definition
+
+```javascript
+import {Banner} from './components/banner';
+import {LoginForm} from './components/loginForm';
+```
+
+## Simplify LoginForm template
+
+Login form HTML contains a lot of HTML jargon, its hard to understand what
+is this form for just by reading the template. To simplify this we are going
+to create a subcomponent called loginField under this component we are going
+to implement all the label / input details. This dialog is just dummy, if it
+could contain information, we would add value as input variable the
+value to be binded and expose a callback for the update (we will do this in patient form).
+
+
+## LoginField component:
+### src/components/login/components/loginField.ts
+
+
+```
+import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
+
+
+@Component({
+  selector: 'login-field',
+
+  template: `
+          <div class="form-group">
+            <label class="col-sm-2 col-lg-offset-2 control-label">{{caption}}</label>
+            <div class="col-sm-9 col-lg-4">
+              <input type="text" class="form-control" [id]="fieldId"/>
+            </div>
+          </div>
+  `
+})
+class LoginField {
+  @Input() caption: string;
+  @Input() fieldId : string;
+}
+
+export {
+  LoginField
+}
+```
+
+## Login module:
+### src/components/login/index.ts
+
+Let's register the component
+
+```javascript
+declarations: [
+  LoginPage,
+  Banner,
+  LoginForm,
+  LoginField
+],
+```
+
+## Login form:
+### src/components/login/components/loginForm.ts
+
+Let's refactor the login form template (html)
+
+
+```
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'login-form',
+  template: `
+    <div class="container-fluid">
+      <div class="row">
+        <form class="form-horizontal">
+          <login-field [caption]="'user'" [fieldId]="'user'"></login-field>
+          <login-field [caption]="'password'" [fieldId]="'password'"></login-field>
+          <div class="form-group">
+            <div class="col-sm-1 col-sm-offset-2 col-lg-offset-4">
+              <button class="btn btn-success" [routerLink]="['/patients']">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  `
+})
+class LoginForm {
+}
+
+export {
+  LoginForm
+}
+```
+
+## LoginButton component:
+### src/components/login/components/loginButton.ts
+
+Let's do a similar thing with the login button

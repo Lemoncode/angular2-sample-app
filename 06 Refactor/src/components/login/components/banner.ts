@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-const imageSrc = require('../../images/health.png');
+const imageSrc = require('../../../images/health.png');
 
 @Component({
   selector: 'banner',

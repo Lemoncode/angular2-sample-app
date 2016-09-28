@@ -6,14 +6,16 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {LoginPage} from './loginPage';
-import {Banner} from './banner';
-import {LoginForm} from './loginForm';
+import {Banner} from './components/banner';
+import {LoginForm} from './components/loginForm';
+import {LoginField} from './components/loginField'
 
 @NgModule({
   declarations: [
     LoginPage,
     Banner,
     LoginForm,
+    LoginField
   ],
   imports: [
     BrowserModule,
