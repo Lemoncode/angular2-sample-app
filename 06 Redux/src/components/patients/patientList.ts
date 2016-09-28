@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Patient } from '../../model/patient';
-import { Promise } from 'core-js/es6';
-import { Store } from 'redux';
-import { AppStore } from '../../store';
-import { AppState } from '../../reducers/';
-import { loadPatients } from '../../actions/patientsActions';
 
 @Component({
   selector: 'patient-list',

@@ -1,8 +1,7 @@
 import { Reducer, Action } from 'redux';
 import { Patient } from '../model/patient';
-import {
-  ASSIGN_PATIENT, AssignPatientAction,
-  PATIENT_UI_INPUT, PatientUIInputAction } from '../actions/patientActions';
+import {  ASSIGN_PATIENT, AssignPatientAction } from '../actions/patient/assignPatientAction';
+import { PATIENT_UI_INPUT, PatientUIInputAction } from '../actions/patient/updatePatientUIAction';
 
 export const patientReducer: Reducer<Patient> =
 (state: Patient = new Patient(), action: Action): Patient => {

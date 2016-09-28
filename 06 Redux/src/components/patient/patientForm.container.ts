@@ -5,15 +5,18 @@ import { Patient } from '../../model/patient';
 import { Store } from 'redux';
 import { AppStore } from '../../store';
 import { AppState } from '../../reducers/';
-import { loadSpecialties } from '../../actions/specialtiesActions';
-import { loadDoctors } from '../../actions/doctorsActions';
-import { loadPatientById, savePatient, updatePatientUI } from '../../actions/patientActions';
+import { loadSpecialties } from '../../actions/specialties/loadSpecialtiesAction';
+import { loadDoctors } from '../../actions/doctors/loadDoctorsAction';
+import { loadPatientById } from '../../actions/patient/loadPatientAction';
+import { savePatient } from '../../actions/patient/savePatientAction';
+import { updatePatientUI } from '../../actions/patient/updatePatientUIAction';
 
 @Component({
   selector: 'patient-form-container',
   template: `
   <div>
-    <patient-form [patient]="patient"
+    <patient-form
+      [patient]="patient"
       [specialties]="specialties"
       [doctors]="doctors"
       [onSave]="savePatient.bind(this)"

@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Patient } from '../../model/patient';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PatientFormValidator } from '../../validators/patientFormValidator';
 
 @Component({
   selector: 'patient-form',

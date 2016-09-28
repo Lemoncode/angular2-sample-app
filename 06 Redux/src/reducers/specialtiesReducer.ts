@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { ASSIGN_SPECIALTIES, AssignSpecialtiesAction } from '../actions/specialtiesActions';
+import { ASSIGN_SPECIALTIES, AssignSpecialtiesAction } from '../actions/specialties/assignSpecialtiesAction';
 
 export const specialtiesReducer: Reducer<Array<string>> =
 (state: Array<string> = [], action: AssignSpecialtiesAction): Array<string> => {

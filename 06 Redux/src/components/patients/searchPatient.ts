@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Promise } from 'core-js/es6';
-import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'search-patient',
