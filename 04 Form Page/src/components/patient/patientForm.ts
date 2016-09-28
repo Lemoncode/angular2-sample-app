@@ -9,14 +9,14 @@ import { PatientAPI } from '../../api/patientAPI';
   <div class="container-fluid well">
     <div class="row">
       <div class="col-xs-12">
-        <h2>Editar Cita - Centro de Día</h2>
+        <h2>Appointment</h2>
       </div>
     </div>
 
     <div class="row">
       <form [formGroup]="patientForm" id="edit-patient-form">
         <div class="col-xs-12 form-group">
-          <label>Datos Paciente</label>
+          <label>Patient Info</label>
         </div>
         <div class="col-sm-6 form-group">
           <label for="dni">DNI</label>
@@ -24,25 +24,25 @@ import { PatientAPI } from '../../api/patientAPI';
             [formControl]="patientForm.controls['dni']"/>
         </div>
         <div class="col-sm-6 form-group">
-          <label for="name">Nombre</label>
+          <label for="name">Name</label>
           <input type="text" class="form-control" id="name"
             [formControl]="patientForm.controls['name']"/>
         </div>
         <div class="col-xs-12 form-group">
-          <label>Datos Cita</label>
+          <label>Appointment Data</label>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="date">Fecha</label>
+          <label for="date">Date</label>
           <input type="date" class="form-control" id="date"
             [formControl]="patientForm.controls['date']"/>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="time">Hora</label>
+          <label for="time">Time</label>
           <input type="time" class="form-control" id="time"
             [formControl]="patientForm.controls['time']"/>
         </div>
         <div class="col-md-6 col-lg-3 form-group">
-          <label for="specialty">Especialidad</label>
+          <label for="specialty">Specialty</label>
           <select id="specialty" class="form-control"
             [formControl]="patientForm.controls['specialty']">
             <option *ngFor="let s of specialties" [value]="s">{{s}}</option>
@@ -58,7 +58,7 @@ import { PatientAPI } from '../../api/patientAPI';
 
         <div class="col-xs-offset-10 col-xs-2 form-group">
           <div class="pull-right">
-            <button type="button" (click)="savePatient($event, patientForm.value)" class="btn btn-success">Guardar</button>
+            <button type="button" (click)="savePatient($event, patientForm.value)" class="btn btn-success">Save</button>
           </div>
         </div>
       </form>
@@ -73,7 +73,7 @@ class PatientForm implements OnChanges {
   @Input() savePatient: (patient: Patient) => void;
   patientForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder, patientAPI : PatientAPI) {
+  constructor(formBuilder: FormBuilder) {
     this.patient = new Patient();
     this.patientForm = formBuilder.group(this.patient);
   }
