@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PatientAPI } from '../../api/patientAPI';
 import { Patient } from '../../model/patient';
 import { Store } from 'redux';
 import { AppStore } from '../../store';
@@ -32,7 +31,7 @@ class PatientFormContainer {
   patient: Patient;
   private patientId: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private patientAPI : PatientAPI,
+  constructor(private route: ActivatedRoute, private router: Router,
   @Inject(AppStore) private store: Store<AppState>) {
     this.loadPatientId();
 
