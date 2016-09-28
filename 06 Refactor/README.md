@@ -545,3 +545,40 @@ template: `
     </div>
   </div>
 `
+
+#Ideas
+
+##PatientList
+
+What could we do to enhance PatientList? Idea Pseudocode
+
+```html
+<patient-header></patientheader>
+<patient-body></patient-body>
+```
+
+and inside patient-body:
+
+```html
+<div class="row">
+  <table class="col-xs-12 table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="hidden-xs hidden-sm hidden-md">DNI</th>
+        <th>Paciente</th>
+        <th>Especialidad</th>
+        <th class="hidden-xs hidden-sm hidden-md">Doctor</th>
+        <th class="hidden-xs">Cita</th>
+        <th class="hidden-xs">Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of patients">
+          <patient-row [patient] ="p"/>
+      </tr>
+    </tbody>
+  </table>
+
+```
+
+Patient-row should just take care of displaying a single row based on a given patient
