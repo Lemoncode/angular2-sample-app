@@ -300,6 +300,20 @@ This component is a form where we're going to retrieve patient data from server
 if it's an existing patient or create new if not, and save changes.
 
 
+## Configuration:
+### src/index.ts
+
+Let's register the component
+
+```javascript
+import { PatientForm } from './components/patient/patientForm';
+...
+declarations: [App,
+                ...
+                PatientForm
+              ],
+```
+
 ## Definition:
 ### src/components/patient/patientPage.ts
 
