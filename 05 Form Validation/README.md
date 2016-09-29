@@ -186,6 +186,10 @@ button.
 ### src/components/patient/patientForm.ts
 
 ```
+import { PatientFormValidator} from '../../validations/patientFormValidator';
+
+...
+
 <form [formGroup]="patientForm" id="edit-patient-form">
   <div class="row">
     <div class="col-xs-12 form-group">
