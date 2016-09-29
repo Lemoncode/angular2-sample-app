@@ -372,7 +372,7 @@ Lets start by checking how can we improve the login module, bad smells that we c
 ## Folder refactoring
 
 We are going to create a subfolder under _src/components/login_ called _components_
-and move there _banner.ts_, _loginForm.ts
+and move there _banner.ts_, _loginForm.ts_
 
 ## Banner:
 ### src/components/login/components/banner.ts
