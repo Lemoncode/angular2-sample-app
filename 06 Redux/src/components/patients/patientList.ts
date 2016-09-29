@@ -17,11 +17,11 @@ import { Patient } from '../../model/patient';
         <thead>
           <tr>
             <th class="hidden-xs hidden-sm hidden-md">DNI</th>
-            <th>Paciente</th>
-            <th>Especialidad</th>
+            <th>Patient</th>
+            <th>Specialty</th>
             <th class="hidden-xs hidden-sm hidden-md">Doctor</th>
-            <th class="hidden-xs">Cita</th>
-            <th class="hidden-xs">Hora</th>
+            <th class="hidden-xs">Date</th>
+            <th class="hidden-xs">Time</th>
           </tr>
         </thead>
         <tbody>

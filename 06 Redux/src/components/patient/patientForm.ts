@@ -8,14 +8,14 @@ import { PatientFormState } from '../../states/patientFormState';
   <div class="container-fluid well">
     <div class="row">
       <div class="col-xs-12">
-        <h2>Editar Cita - Centro de Día</h2>
+        <h2>Appointment</h2>
       </div>
     </div>
 
     <form id="edit-patient-form">
       <div class="row">
         <div class="col-xs-12 form-group">
-          <label>Datos Paciente</label>
+          <label>Patient Info</label>
         </div>
       </div>
       <div class="row">
@@ -37,7 +37,7 @@ import { PatientFormState } from '../../states/patientFormState';
 
       <div class="row">
         <div class="col-xs-12 form-group">
-          <label>Datos Cita</label>
+          <label>Appointment Info</label>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ import { PatientFormState } from '../../states/patientFormState';
           <div>
             <button type="button" class="btn btn-primary"
               (click)="navigateBack($event)">
-              Volver
+              Back
             </button>
           </div>
         </div>
@@ -92,7 +92,7 @@ import { PatientFormState } from '../../states/patientFormState';
             <button type="button" class="btn btn-success"
               (click)="!patientForm.isValid || onSave(patientForm.patient)"
               [class.disabled]="!patientForm.isValid">
-              Guardar
+              Save
             </button>
           </div>
         </div>
