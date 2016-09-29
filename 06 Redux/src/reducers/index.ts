@@ -5,7 +5,6 @@ import { specialtiesReducer } from './specialtiesReducer';
 import { doctorsReducer } from './doctorsReducer';
 import { patientReducer } from './patientReducer';
 
-
 export const reducers: Reducer<AppState> = combineReducers<AppState>({
   patients: patientsReducer,
   specialties: specialtiesReducer,
