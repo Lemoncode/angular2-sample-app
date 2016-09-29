@@ -9,6 +9,9 @@ class PatientFormValidator {
     switch(field) {
       case "dni":
         return this.validateDNI(value);
+
+      default:
+        return this.validateRequiredField(value);
     }
   }
 
@@ -31,6 +34,17 @@ class PatientFormValidator {
         formError.isValid = false;
         formError.errorMessage = "Invalid DNI";
         break;
+    }
+
+    return formError;
+  }
+
+  private validateRequiredField(value: any): FormError {
+    let formError = new FormError();
+    formError.isValid = requiredValidation.isValid(value);
+
+    if (!formError.isValid) {
+      formError.errorMessage = "Mandatory field";
     }
 
     return formError;

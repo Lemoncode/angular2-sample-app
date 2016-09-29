@@ -1,7 +1,7 @@
 import { Reducer, Action } from 'redux';
 import { Patient } from '../model/patient';
 import { PatientFormState, PatientFormErrors } from '../states/patientFormState';
-import {  ASSIGN_PATIENT, AssignPatientAction } from '../actions/patient/assignPatientAction';
+import { ASSIGN_PATIENT, AssignPatientAction } from '../actions/patient/assignPatientAction';
 import { PATIENT_UI_INPUT, PatientUIInputAction } from '../actions/patient/updatePatientUIAction';
 
 export const patientReducer: Reducer<PatientFormState> =
