@@ -29,5 +29,19 @@ const patientUIInput = (state: PatientFormState, action: PatientUIInputAction) =
     [action.fieldName]: action.value
   });
 
-  return Object.assign({}, state, patient);
+  let errors = Object.assign({}, state.errors, {
+    [action.fieldName]: action.formError
+  });
+
+  return Object.assign({}, state, {
+    patient,
+    errors,
+    isValid: isFormValid(errors)
+  });
+}
+
+const isFormValid = (errors: PatientFormErrors): boolean => {
+  return Object.keys(errors).every((key) => {
+    return errors[key].isValid;
+  });
 }

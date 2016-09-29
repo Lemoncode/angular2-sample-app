@@ -19,11 +19,12 @@ import { PatientFormState } from '../../states/patientFormState';
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6 form-group" [class.has-error]="false">
+        <div class="col-sm-6 form-group" [class.has-error]="!patientForm.errors.dni.isValid">
           <label class="control-label" for="dni">DNI</label>
           <input type="text" class="form-control" id="dni"
             value={{patientForm.patient.dni}}
             (input)="onChange($event)" />
+            <span *ngIf="!patientForm.errors.dni.isValid" class="help-block">{{patientForm.errors.dni.errorMessage}}</span>
         </div>
       </div>
 
@@ -39,7 +40,8 @@ import { PatientFormState } from '../../states/patientFormState';
         <div class="col-xs-offset-8 col-xs-2 form-group">
           <div class="pull-right">
             <button type="button" class="btn btn-success"
-              (click)="onSave($event, patient)">
+              (click)="!patientForm.isValid || onSave($event, patientForm.patient)"
+              [class.disabled]="!patientForm.isValid">
               Guardar
             </button>
           </div>

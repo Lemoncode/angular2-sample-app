@@ -1,71 +1,44 @@
-import { FormGroup, Validators } from '@angular/forms';
-import { dniValidator } from './dniValidator';
+import { Patient } from '../model/patient';
+import { PatientFormState, PatientFormErrors, FormError } from '../states/patientFormState';
+import { dniValidation } from '../validations/dniValidation';
+import { requiredValidation } from '../validations/requiredValidation';
 
 class PatientFormValidator {
-  constructor(private patientForm: FormGroup) {
 
+  validateField(field: string, value: any): FormError {
+    switch(field) {
+      case "dni":
+        return this.validateDNI(value);
+    }
   }
 
-  setValidators() {
-    this.setDNIValidators();
-    this.setNameValidators();
-    this.setDateValidators();
-    this.setTimeValidators();
-    this.setSpecialtyValidators();
-    this.setDoctorValidators();
-  }
+  private validateDNI(dni: string): FormError {
+    let formError = new FormError();
+    formError.isValid = true;
 
-  private setDNIValidators() {
-    let dniFormControl = this.patientForm.controls['dni'];
+    switch (false) {
+      case requiredValidation.isValid(dni):
+        formError.isValid = false;
+        formError.errorMessage = "Mandatory field";
+        break;
 
-    dniFormControl.setValidators([
-      Validators.required,
-      dniValidator.hasValidFormat,
-      dniValidator.isValid
-    ]);
-  }
+      case dniValidation.hasValidFormat(dni):
+        formError.isValid = false;
+        formError.errorMessage = "Invalid format";
+        break;
 
-  private setNameValidators() {
-    let nameFormControl = this.patientForm.controls['name'];
+      case dniValidation.isValid(dni):
+        formError.isValid = false;
+        formError.errorMessage = "Invalid DNI";
+        break;
+    }
 
-    nameFormControl.setValidators([
-      Validators.required
-    ]);
-  }
-
-  private setDateValidators() {
-    let dateFormControl = this.patientForm.controls['date'];
-
-    dateFormControl.setValidators([
-      Validators.required
-    ]);
-  }
-
-  private setTimeValidators() {
-    let timeFormControl = this.patientForm.controls['time'];
-
-    timeFormControl.setValidators([
-      Validators.required
-    ]);
-  }
-
-  private setSpecialtyValidators() {
-    let specialtyFormControl = this.patientForm.controls['specialty'];
-
-    specialtyFormControl.setValidators([
-      Validators.required
-    ]);
-  }
-
-  private setDoctorValidators() {
-    let doctorFormControl = this.patientForm.controls['doctor'];
-
-    doctorFormControl.setValidators([
-      Validators.required
-    ]);
+    return formError;
   }
 }
 
+const patientFormValidator = new PatientFormValidator();
+
 export {
-  PatientFormValidator
+  patientFormValidator
 }

@@ -19,9 +19,23 @@ export class PatientFormErrors {
   time: FormError;
   specialty: FormError;
   doctor: FormError;
+
+  constructor () {
+    this.dni = new FormError();
+    this.name = new FormError();
+    this.date = new FormError();
+    this.time = new FormError();
+    this.specialty = new FormError();
+    this.doctor = new FormError();
+  }
 }
 
-interface FormError {
+export class FormError {
   isValid: boolean;
   errorMessage: string;
+
+  constructor() {
+    this.isValid = true;
+    this.errorMessage = "";
+  }
 }
