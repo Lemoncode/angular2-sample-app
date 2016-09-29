@@ -146,7 +146,7 @@ const routes: Routes = [
 ```
 
 ## Using routerLink with params
-### src/components/patients/patientList.ts
+### src/components/patients/patientsList.ts
 ```
 ...
 <div class="well">
