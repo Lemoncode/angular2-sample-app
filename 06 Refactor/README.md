@@ -218,7 +218,7 @@ export class PatientsModule {
 ```
 
 ## Main Module:
-### src/components/index.ts
+### src/index.ts
 
 Lets include it into the index.ts module and remove the references to
 patients components.
