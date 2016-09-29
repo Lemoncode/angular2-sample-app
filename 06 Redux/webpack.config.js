@@ -27,7 +27,8 @@ module.exports = {
       "rxjs",
       "@angular/router",
       "bootstrap",
-      "redux"
+      "redux",
+      "redux-thunk"
     ],
     vendorStyles: [
       '../node_modules/bootstrap/dist/css/bootstrap.css'

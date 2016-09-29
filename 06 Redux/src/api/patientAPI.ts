@@ -61,6 +61,5 @@ class PatientAPI {
 let patientAPI: PatientAPI = new PatientAPI();
 
 export {
-  PatientAPI,
   patientAPI
 }
