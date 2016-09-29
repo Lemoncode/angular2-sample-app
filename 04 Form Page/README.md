@@ -18,6 +18,28 @@ Summary steps:
 
 # API
 
+We need to add some more mockdata
+## Definition:
+### src/api/mockData.ts
+
+Add more content to the existing mockData file.
+
+```javascript
+const doctorsMockData: Array<string> = [
+  "Karl J. Linville",
+  "Gladys C. Horton",
+  "Ruthie A. Nemeth"
+];
+
+...
+
+export {
+  patientsMockData,
+  specialtiesMockData,
+  doctorsMockData
+}
+```
+
 We add new methods:
 
 - Retrieve doctor collection.
@@ -124,7 +146,7 @@ const routes: Routes = [
 ```
 
 ## Using routerLink with params
-### src/components/patients/patientList.ts
+### src/components/patients/patientsList.ts
 ```
 ...
 <div class="well">
@@ -184,7 +206,6 @@ We're going to create patient form, and update values on changes.
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { patientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'patient-form',
@@ -278,6 +299,20 @@ export {
 This component is a form where we're going to retrieve patient data from server
 if it's an existing patient or create new if not, and save changes.
 
+
+## Configuration:
+### src/index.ts
+
+Let's register the component
+
+```javascript
+import { PatientForm } from './components/patient/patientForm';
+...
+declarations: [App,
+                ...
+                PatientForm
+              ],
+```
 
 ## Definition:
 ### src/components/patient/patientPage.ts
