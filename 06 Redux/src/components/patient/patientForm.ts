@@ -56,10 +56,9 @@ class PatientForm implements OnInit {
   @Input() onSave: (event: any, patient: Patient) => void;
   @Input() navigateBack: (event: any) => void;
   @Input() onChange: (event: any) => void;
-  @Input() onInitializeForm: () => void;
 
   ngOnInit() {
-    this.onInitializeForm();
+    this.patientForm = new PatientFormState();
   }
 }
 

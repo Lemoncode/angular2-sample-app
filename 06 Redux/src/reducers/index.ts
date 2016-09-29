@@ -10,5 +10,5 @@ export const reducers: Reducer<AppState> = combineReducers<AppState>({
   patients: patientsReducer,
   specialties: specialtiesReducer,
   doctors: doctorsReducer,
-  patient: patientReducer
+  patientForm: patientReducer
 });

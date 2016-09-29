@@ -10,7 +10,6 @@ import { loadDoctors } from '../../actions/doctors/loadDoctorsAction';
 import { loadPatientById } from '../../actions/patient/loadPatientAction';
 import { savePatient } from '../../actions/patient/savePatientAction';
 import { updatePatientUI } from '../../actions/patient/updatePatientUIAction';
-import { initializePatientForm } from '../../actions/patient/initializePatientFormAction';
 
 @Component({
   selector: 'patient-form-container',
@@ -22,8 +21,7 @@ import { initializePatientForm } from '../../actions/patient/initializePatientFo
       [doctors]="doctors"
       [onSave]="savePatient.bind(this)"
       [navigateBack]="navigateBack.bind(this)"
-      [onChange]="updatePatientFormUI.bind(this)"
-      [onInitializeForm]="initializePatientForm.bind(this)">
+      [onChange]="updatePatientFormUI.bind(this)">
     </patient-form>
   </div>
   `
@@ -65,10 +63,6 @@ class PatientFormContainer {
     this.specialties = state.specialties;
     this.doctors = state.doctors;
     this.patientForm = state.patientForm;
-  }
-
-  initializePatientForm() {
-    this.store.dispatch(initializePatientForm);
   }
 
   updatePatientFormUI(event: any) {
