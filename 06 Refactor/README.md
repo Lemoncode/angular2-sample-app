@@ -61,7 +61,7 @@ export class LoginModule {
 }
 ```
 ## App Module:
-### src/app.ts
+### src/index.ts
 
 Let's remove the references to the login components, and add a dependency to the login form.
 
