@@ -18,6 +18,28 @@ Summary steps:
 
 # API
 
+We need to add some more mockdata
+## Definition:
+### src/api/mockData.ts
+
+Add more content to the existing mockData file.
+
+```javascript
+const doctorsMockData: Array<string> = [
+  "Karl J. Linville",
+  "Gladys C. Horton",
+  "Ruthie A. Nemeth"
+];
+
+...
+
+export {
+  patientsMockData,
+  specialtiesMockData,
+  doctorsMockData
+}
+```
+
 We add new methods:
 
 - Retrieve doctor collection.
