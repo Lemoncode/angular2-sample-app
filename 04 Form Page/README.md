@@ -206,7 +206,6 @@ We're going to create patient form, and update values on changes.
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { Patient } from '../../model/patient';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'patient-form',
