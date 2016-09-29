@@ -27,7 +27,6 @@ module.exports = {
       "rxjs",
       "@angular/router",
       "bootstrap",
-      "@angular/forms",
       "redux"
     ],
     vendorStyles: [
