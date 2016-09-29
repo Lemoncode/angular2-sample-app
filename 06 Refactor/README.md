@@ -535,15 +535,17 @@ declarations: [
 Let's refactor the login form template (html)
 
 template: `
+```javascript
   <div class="container-fluid">
     <div class="row">
       <form class="form-horizontal">
         <login-field [caption]="'user'" [fieldId]="'user'"></login-field>
         <login-field [caption]="'password'" [fieldId]="'password'"></login-field>
-        <login-button [navigationLink]="navigationLink"></login-button>
+        <login-button [navigationLink]="'/patients'"></login-button>
       </form>
     </div>
   </div>
+ ``` 
 `
 
 #Ideas
