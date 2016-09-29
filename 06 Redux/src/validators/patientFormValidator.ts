@@ -15,6 +15,20 @@ class PatientFormValidator {
     }
   }
 
+  validatePatient(patient: Patient): PatientFormState {
+    let patientFormState = new PatientFormState();
+    patientFormState.patient = patient;
+    patientFormState.errors.dni = this.validateDNI(patient.dni);
+    patientFormState.errors.name = this.validateRequiredField(patient.name);
+    patientFormState.errors.date = this.validateRequiredField(patient.date);
+    patientFormState.errors.time = this.validateRequiredField(patient.time);
+    patientFormState.errors.specialty = this.validateRequiredField(patient.specialty);
+    patientFormState.errors.doctor = this.validateRequiredField(patient.doctor);
+    patientFormState.isValid = this.isFormValid(patientFormState.errors);
+
+    return patientFormState;
+  }
+
   private validateDNI(dni: string): FormError {
     let formError = new FormError();
     formError.isValid = true;
@@ -48,6 +62,12 @@ class PatientFormValidator {
     }
 
     return formError;
+  }
+
+  private isFormValid = (errors: PatientFormErrors): boolean => {
+    return Object.keys(errors).every((key) => {
+      return errors[key].isValid;
+    });
   }
 }
 

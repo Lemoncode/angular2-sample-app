@@ -4,11 +4,13 @@ export class PatientFormState {
   patient: Patient;
   isValid: boolean;
   errors: PatientFormErrors;
+  isSaveCompleted: boolean;
 
   constructor() {
     this.patient = new Patient();
     this.isValid = true;
     this.errors = new PatientFormErrors();
+    this.isSaveCompleted = false;
   }
 }
 

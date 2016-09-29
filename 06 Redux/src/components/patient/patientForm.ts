@@ -90,7 +90,7 @@ import { PatientFormState } from '../../states/patientFormState';
         <div class="col-xs-offset-8 col-xs-2 form-group">
           <div class="pull-right">
             <button type="button" class="btn btn-success"
-              (click)="!patientForm.isValid || onSave($event, patientForm.patient)"
+              (click)="!patientForm.isValid || onSave(patientForm.patient)"
               [class.disabled]="!patientForm.isValid">
               Guardar
             </button>
@@ -105,7 +105,7 @@ class PatientForm implements OnInit {
   @Input() specialties: Array<string>;
   @Input() doctors: Array<string>;
   @Input() patientForm: PatientFormState;
-  @Input() onSave: (event: any, patient: Patient) => void;
+  @Input() onSave: (patient: Patient) => void;
   @Input() navigateBack: (event: any) => void;
   @Input() onChange: (event: any) => void;
 

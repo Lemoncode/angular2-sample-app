@@ -10,6 +10,7 @@ import { loadDoctors } from '../../actions/doctors/loadDoctorsAction';
 import { loadPatientById } from '../../actions/patient/loadPatientAction';
 import { savePatient } from '../../actions/patient/savePatientAction';
 import { updatePatientUI } from '../../actions/patient/updatePatientUIAction';
+import { resetPatientForm } from '../../actions/patient/resetPatientFormAction';
 
 @Component({
   selector: 'patient-form-container',
@@ -48,13 +49,15 @@ class PatientFormContainer {
     });
   }
 
-  savePatient(event: any, patient: Patient) {
+  savePatient(patient: Patient) {
     this.store.dispatch(savePatient(patient));
-    this.navigateBack(event);
   }
 
-  navigateBack(event: any) {
-    event.preventDefault();
+  navigateBack(event?: any) {
+    if (event) {
+      event.preventDefault();    
+    }
+    this.store.dispatch(resetPatientForm());
     this.router.navigate(['/patients']);
   }
 
@@ -63,6 +66,10 @@ class PatientFormContainer {
     this.specialties = state.specialties;
     this.doctors = state.doctors;
     this.patientForm = state.patientForm;
+
+    if (state.patientForm.isSaveCompleted) {
+        this.navigateBack();
+    }
   }
 
   updatePatientFormUI(event: any) {
