@@ -24,7 +24,7 @@ Let's create a Module per page (each page is broken down into subcomponents),
 by doing this we will simplify main module definition.
 
 ## Shared Module definition:
-### src/login/index.ts
+### src/components/login/index.ts
 
 We will create a module that will compile all the subcomponents related with the login form.
 
