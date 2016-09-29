@@ -1,4 +1,4 @@
-# 05 Form Validation
+# 06 Refactor
 
 We have manage to complete our sample app, but things can be enhanced, in this
 iteration we are going to apply some refactoring in order to make the app more
