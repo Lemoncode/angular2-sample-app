@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Patient } from '../../model/patient';
-import { Promise } from 'core-js/es6';
-import { PatientAPI } from '../../api/patientAPI';
 
 @Component({
   selector: 'patient-list',
@@ -19,11 +17,11 @@ import { PatientAPI } from '../../api/patientAPI';
         <thead>
           <tr>
             <th class="hidden-xs hidden-sm hidden-md">DNI</th>
-            <th>Paciente</th>
-            <th>Especialidad</th>
+            <th>Patient</th>
+            <th>Specialty</th>
             <th class="hidden-xs hidden-sm hidden-md">Doctor</th>
-            <th class="hidden-xs">Cita</th>
-            <th class="hidden-xs">Hora</th>
+            <th class="hidden-xs">Date</th>
+            <th class="hidden-xs">Time</th>
           </tr>
         </thead>
         <tbody>
@@ -52,13 +50,7 @@ import { PatientAPI } from '../../api/patientAPI';
   `
 })
 class PatientList {
-  patients: Array<Patient>;
-
-  constructor(patientAPI : PatientAPI) {
-    patientAPI.getAllPatientsAsync().then((patients: Array<Patient>) => {
-      this.patients = patients;
-    });
-  }
+  @Input() patients: Array<Patient>;
 }
 
 export {

@@ -1,25 +1,30 @@
-import { FormControl } from '@angular/forms';
-import { hasValidFormat, isValidDNI } from '../validations/dniValidation';
+import {FormError } from '../states/patientFormState';
+import { dniValidation } from '../validations/dniValidation';
+import { requiredValidation } from '../validations/requiredValidation';
 
 class DNIValidator {
-  hasValidFormat(dniFormControl: FormControl): any {
-    return hasValidFormat(dniFormControl.value) ?
-      null :
-      {
-        "dni.hasValidFormat": {
-          valid: false
-        }
-      }
-  }
+  validateDNI(dni: string): FormError {
+    let formError = new FormError();
+    formError.isValid = true;
 
-  isValid(dniFormControl: FormControl) {
-    return isValidDNI(dniFormControl.value) ?
-      null :
-      {
-        "dni.isValid": {
-          valid: false
-        }
-      }
+    switch (false) {
+      case requiredValidation.isValid(dni):
+        formError.isValid = false;
+        formError.errorMessage = "Mandatory field";
+        break;
+
+      case dniValidation.hasValidFormat(dni):
+        formError.isValid = false;
+        formError.errorMessage = "Invalid format";
+        break;
+
+      case dniValidation.isValid(dni):
+        formError.isValid = false;
+        formError.errorMessage = "Invalid DNI";
+        break;
+    }
+
+    return formError;
   }
 }
 
