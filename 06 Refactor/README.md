@@ -550,7 +550,7 @@ template: `
 
 #Ideas
 
-##PatientList
+##PatientsList
 
 What could we do to enhance PatientList? Idea Pseudocode
 
