@@ -555,7 +555,7 @@ template: `
 What could we do to enhance PatientList? Idea Pseudocode
 
 ```html
-<patient-header></patientheader>
+<patient-header></patient-header>
 <patient-body></patient-body>
 ```
 
