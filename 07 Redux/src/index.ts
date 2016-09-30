@@ -1,0 +1,51 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { RouterModule } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { routes } from './routes';
+import { AppStore, store } from './store';
+
+import { App } from './components/app';
+import { Header } from './components/common/header';
+import { LoginPage } from './components/login/loginPage';
+import { Banner } from './components/login/banner';
+import { LoginForm } from './components/login/loginForm';
+import { PatientsPage } from './components/patients/patientsPage';
+import { SearchPatientContainer } from './components/patients/searchPatient.container';
+import { SearchPatient } from './components/patients/searchPatient';
+import { PatientListContainer } from './components/patients/patientList.container';
+import { PatientList } from './components/patients/patientList';
+import { PatientFormContainer } from './components/patient/patientForm.container';
+import { PatientForm } from './components/patient/patientForm';
+
+@NgModule({
+  declarations: [
+    App,
+    Header,
+    LoginPage,
+    Banner,
+    LoginForm,
+    PatientsPage,
+    SearchPatientContainer,
+    SearchPatient,
+    PatientListContainer,
+    PatientList,
+    PatientFormContainer,
+    PatientForm
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  bootstrap: [App],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: AppStore, useValue: store }
+  ]
+})
+class AppModule {
+
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule)
