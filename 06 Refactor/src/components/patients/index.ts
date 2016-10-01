@@ -9,12 +9,18 @@ import {APIModule} from '../../api/';
 import {PatientsPage} from './patientsPage';
 import {PatientList} from './patientList';
 import {SearchPatient} from './searchPatient';
+import {PatientButtonAdd} from "./components/patientButtonAdd";
+import {PatientListTable} from "./components/patientListTable";
+import {PatientRow} from "./components/patientRow";
 
 @NgModule({
   declarations: [
     PatientsPage,
     PatientList,
     SearchPatient,
+    PatientButtonAdd,
+    PatientListTable,
+    PatientRow
   ],
   imports: [
     BrowserModule,
