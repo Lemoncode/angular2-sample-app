@@ -10,7 +10,7 @@ import { Patient } from "../../../model/patient";
       <td>
         {{patient.specialty}}
         <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
-          [routerLink]="['/patient']">
+          [routerLink]="['/patient', patient.id]">
         </span>
       </td>
       <td class="hidden-xs hidden-sm hidden-md">{{patient.doctor}}</td>

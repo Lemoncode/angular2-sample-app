@@ -33,7 +33,7 @@ import { PatientAPI } from '../../api/patientAPI';
             <td>
               {{p.specialty}}
               <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
-                [routerLink]="['/patient']">
+                [routerLink]="['/patient', p.id]">
               </span>
             </td>
             <td class="hidden-xs hidden-sm hidden-md">{{p.doctor}}</td>
